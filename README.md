@@ -1,4 +1,4 @@
-# wavemaker-cards
+# fstest
 
 ## Project setup
 ```
