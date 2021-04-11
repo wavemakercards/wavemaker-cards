@@ -1,6 +1,6 @@
 {
-  "name": "fstest",
-  "version": "1.0.0",
+  "name": "wavemaker-cards",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
