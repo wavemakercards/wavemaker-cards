@@ -9,7 +9,7 @@ module.exports = {
           publish: [
             {
               provider: "github",
-              owner: "mayasky76",
+              owner: "wavemakercards",
               private: true,
             }
           ]
