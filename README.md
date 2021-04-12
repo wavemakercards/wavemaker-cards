@@ -25,7 +25,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+
 
 
 
@@ -188,15 +188,15 @@ Project Link: [https://github.com/wavemakercards/wavemaker-cards](https://github
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/wavemakercards/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/wavemakercards/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/wavemakercards/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/wavemakercards/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/wavemakercards/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/wavemakercards/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/wavemakercards/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/wavemakercards/repo/issues
-[license-shield]: https://img.shields.io/github/license/wavemakercards/repo.svg?style=for-the-badge
-[license-url]: https://github.com/wavemakercards/repo/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/wavemakercards/wavemaker-cards.svg?style=for-the-badge
+[contributors-url]: https://github.com/wavemakercards/wavemaker-cards/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/wavemakercards/wavemaker-cards.svg?style=for-the-badge
+[forks-url]: https://github.com/wavemakercards/wavemaker-cards/network/members
+[stars-shield]: https://img.shields.io/github/stars/wavemakercards/wavemaker-cards.svg?style=for-the-badge
+[stars-url]: https://github.com/wavemakercards/wavemaker-cards/stargazers
+[issues-shield]: https://img.shields.io/github/issues/wavemakercards/wavemaker-cards.svg?style=for-the-badge
+[issues-url]: https://github.com/wavemakercards/wavemaker-cards/issues
+[license-shield]: https://img.shields.io/github/license/wavemakercards/wavemaker-cards.svg?style=for-the-badge
+[license-url]: https://github.com/wavemakercards/wavemaker-cards/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/wavemakercards
