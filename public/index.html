@@ -15,38 +15,27 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <script>
- 
- const electron = require('electron')
-const path = require('path')
-const remote = electron.remote
-const ipcRenderer = require('electron').ipcRenderer;
+      function wmlog(str, stl){
 
-function titlebar(){
-      let tb=document.createElement("div")
-      tb.style.backgroundColor ="#f00"
-      tb.style.position = "fixed"
-      tb.style.top="0px"
-      tb.style.left="0px"
-      tb.style.right="0px"  
-      tb.style.height="100px"
-      tb.style["-webkit-app-region"] ="drag"
-      tb.style.cursor="pointer"
-      
-      let btn=document.createElement("button")
-      btn.innerText="x"
-      btn.style["-webkit-app-region"] ="no-drag"
-      btn.onclick = ()=>{
-        console.log(ipcRenderer)
-        ipcRenderer.send('close-window');
-    
-       }
-      tb.append(btn)
-      document.body.append(tb)
-}
-
-function closewin(){
-  console.log("close")
-}
+        switch (stl) {
+          case "error":
+          style="background-color: darkred;color:#fff; padding-left:15px;padding-right:15px; border-radius:5px;"
+            break;
+            case "warn":
+          style="background-color: darkmagenta;color:#fff; padding-left:15px;padding-right:15px; border-radius:5px;"
+            break;
+        
+            case "success":
+          style="background-color: darkgreen;color:#fff; padding-left:15px;padding-right:15px; border-radius:5px;"
+            break;
+        
+          default:
+            style="background-color: darkblue;color:#fff; padding-left:15px;padding-right:15px; border-radius:5px;"
+            break;
+        }
+        console.log("wavemaker: %c✒️"+str, style);
+      }
     </script>
+
   </body>
 </html>
