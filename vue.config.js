@@ -12,7 +12,7 @@ module.exports = {
               owner: "wavemakercards",
               private: true,
             }
-          ]
+          ],
         },
         chainWebpackRendererProcess(config) {
           config.plugins.delete('workbox')

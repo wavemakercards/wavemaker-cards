@@ -13,12 +13,16 @@ protocol.registerSchemesAsPrivileged([
 
 async function createWindow() {
   // Create the browser window.
+
+ 
+
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     darkTheme : true,
     titleBarStyle : "hidden",
-    frame: false,
+     //TODO : Change fram : false  to get rid of chrome on window for live
+    frame: true,
     transparent: true,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone

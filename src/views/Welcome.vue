@@ -32,7 +32,7 @@
           fermentum tincidunt non non ex.
         </p>
         <LocalOpen />
-        <button>Load a Project</button>
+  
       </div>
 
       <div class="infocard">

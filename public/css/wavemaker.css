@@ -29,8 +29,8 @@
     --c8: #212121;
     --c9: #000000;
 
-    --logo-top: var(--c4);
-    --logo-bottom: var(--c6);
+    --logo-top: var(--c6);
+    --logo-bottom: var(--c4);
 
     --titlebar-bg : var(--c8);
     --titlebar-fg : var(--c1);
