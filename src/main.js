@@ -7,5 +7,8 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  mounted(){
+    console.log("Electron?",process.env.IS_ELECTRON)
+  }
 }).$mount('#app')

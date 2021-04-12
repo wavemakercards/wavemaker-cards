@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="css/wavemaker.css">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
@@ -13,5 +14,39 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script>
+ 
+ const electron = require('electron')
+const path = require('path')
+const remote = electron.remote
+const ipcRenderer = require('electron').ipcRenderer;
+
+function titlebar(){
+      let tb=document.createElement("div")
+      tb.style.backgroundColor ="#f00"
+      tb.style.position = "fixed"
+      tb.style.top="0px"
+      tb.style.left="0px"
+      tb.style.right="0px"  
+      tb.style.height="100px"
+      tb.style["-webkit-app-region"] ="drag"
+      tb.style.cursor="pointer"
+      
+      let btn=document.createElement("button")
+      btn.innerText="x"
+      btn.style["-webkit-app-region"] ="no-drag"
+      btn.onclick = ()=>{
+        console.log(ipcRenderer)
+        ipcRenderer.send('close-window');
+    
+       }
+      tb.append(btn)
+      document.body.append(tb)
+}
+
+function closewin(){
+  console.log("close")
+}
+    </script>
   </body>
 </html>

@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Roboto:wght@100;400;700&display=swap');
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  :root {
+    --c0: #eceff1;
+    --c1: #cfd8dc;
+    --c2: #b0bec5;
+    --c3: #90a4ae;
+    --c4: #78909c;
+    --c5: #607d8b;
+    --c6: #546e7a;
+    --c7: #455a64;
+    --c8: #37474f;
+    --c9: #263238;
+
+    --titlebar-bg : var(--c9);
+    --titlebar-fg : var(--c0);
+
+    --window-bg : var(--c9);
+    --window-fg : var(--c0);
+
+}
+html,body{
+    padding: 0;
+    margin:0;
+    position: relative;
+}
+
+
+
+body{
+background-color:var(--window-bg);
+color:#fff;
+font-family: 'Raleway', sans-serif;
+
+}

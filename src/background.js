@@ -16,13 +16,22 @@ async function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    darkTheme : true,
+    titleBarStyle : "hidden",
+    frame: false,
+    transparent: true,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
+      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      enableRemoteModule: true
     }
     // Code at the end of createWindow function
   })
+
+
+
+  
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
@@ -34,8 +43,6 @@ async function createWindow() {
     win.loadURL('app://./index.html')
     autoUpdater.checkForUpdatesAndNotify()
   }
-
-  process.env.GH_TOKEN = "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";
   autoUpdater.autoDownload = false;
   autoUpdater.checkForUpdates()
 }
@@ -67,8 +74,11 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
+
   createWindow()
+
 })
+
 
 // Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {
