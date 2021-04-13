@@ -14,9 +14,9 @@ have a 'clean' component and when importing them use something like below
 */
 const  VueTitlebar = () =>{
   if(process.env.IS_ELECTRON){
-  return import("@/components/electron/titlebar/titlebar.vue")
+  return import("@/components/titlebar/titlebar.vue")
 }else{
-  return import("@/components/electron/titlebar/titlebar-clean.vue")
+  return import("@/components/titlebar/titlebar-clean.vue")
 }
 
 }
@@ -27,4 +27,7 @@ VueTitlebar
   }
 }
 </script>
+<style >
+@import '~material-design-icons/iconfont/material-icons.css';
 
+</style>

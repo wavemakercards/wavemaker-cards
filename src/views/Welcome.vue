@@ -1,7 +1,6 @@
 <template>
   <div id="welcome">
     <div id="banner">
-      <h1>Version 0.1.4</h1>
       <svg id="logo" version="1.1" viewBox="0 0 24 24" width="50px" >
 <defs id="defs10"/>
 <path id="path2" d="M0 0h24v24H0V0z" fill="none"/>
@@ -22,7 +21,7 @@
           purus purus, id consequat dolor egestas ac. Maecenas in nisl eu lectus
           fermentum tincidunt non non ex.
         </p>
-        <button>Continue Working</button>
+        <button @click="$router.push('home')" class="btn btn-success">Continue Working</button>
       </div>
 
       <div class="infocard">
@@ -32,7 +31,16 @@
           purus purus, id consequat dolor egestas ac. Maecenas in nisl eu lectus
           fermentum tincidunt non non ex.
         </p>
+        <p>
+          Load a file from this computer
         <LocalOpen />
+        </p>
+
+              <p>
+          Load a file from your wavemaker account
+       <WebOpen />
+        </p>
+            
   
       </div>
 
@@ -53,16 +61,18 @@
 
 const  LocalOpen = () =>{
  if(process.env.IS_ELECTRON){
-  return import("@/components/electron/filesystem/LocalOpen.vue")
+  return import("@/components/filesystem/LocalOpen.vue")
 }else{
-  return import("@/components/electron/filesystem/LocalOpen-clean.vue")
+  return import("@/components/filesystem/LocalOpen-clean.vue")
 }
 }
 
+import WebOpen from "@/components/filesystem/WebOpen.vue"
 
 export default {
   components: {
-   LocalOpen
+   LocalOpen,
+  WebOpen
   },
   data() {
     return {
@@ -71,19 +81,12 @@ export default {
   },
   beforeCreate(){
     window.wmlog("Is there a database?")
-
-
   }
 };
 </script>
 <style scoped>
 #welcome {
-  position: fixed;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  overflow: auto;
+  display: block;
 }
 
 #banner {
@@ -91,10 +94,7 @@ export default {
   width: 70%;
   margin:0 auto;
   margin-top:10%;
-
   text-align: center;
-  background-color: var(--page-bg);
-  color: var(--page-fg);
   padding: 30px;
 }
 

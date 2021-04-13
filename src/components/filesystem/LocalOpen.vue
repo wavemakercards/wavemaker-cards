@@ -2,9 +2,6 @@
   <div>
     <button @click="openfile">OPEN FILE</button>
     {{ filepath }}
-    <hr />
-
-<pre style="overflow:auto; max-height:500px;">{{ filedata }} </pre>
   </div>
 </template>
 <script>
@@ -13,12 +10,10 @@ const { dialog } = require("electron").remote;
 export default {
   data() {
     return {
-      filedata: null,
       filepath: null,
     };
   },
   methods: {
-
     openfile() {
       window.wmlog("Open local file", "warn");
 
@@ -35,13 +30,15 @@ export default {
           //console.log(result.canceled)
           // console.log(result.filePaths)
           this.filepath = result.filePaths[0];
+          this.$root.fileinfo.location = result.filePaths[0];
+          this.$root.fileinfo.type = "fs"
           console.log(this.filepath)
  fs.readFile(this.filepath, "utf8", (err, data) =>  {
         if (err) {
-          alert("An error ocurred reading the file :" + err.message);
+          console.log("An error ocurred reading the file :" + err.message);
           return;
         }
-        this.filedata=data;
+        this.$root.importFile(data)      
       });
 
 

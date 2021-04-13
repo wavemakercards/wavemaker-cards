@@ -21,8 +21,8 @@ async function createWindow() {
     height: 600,
     darkTheme : true,
     titleBarStyle : "hidden",
-     //TODO : Change fram : false  to get rid of chrome on window for live
-    frame: true,
+     //TODO : Change frame : false  to get rid of chrome on window for live
+    frame: false,
     transparent: true,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
@@ -47,10 +47,6 @@ async function createWindow() {
     win.loadURL('app://./index.html')
     autoUpdater.checkForUpdatesAndNotify()
   }
-  //TODO : this was set to false - so hopefully it will automatically update
-  //autoUpdater.autoDownload = true;
-  //autoUpdater.checkForUpdates()
-
   autoUpdater.checkForUpdatesAndNotify()
 }
 
