@@ -4,7 +4,7 @@
     {{ filepath }}
     <hr />
 
-<pre style="overflow:auto; max-height:500px;">    {{ filedata }} </pre>
+<pre style="overflow:auto; max-height:500px;">{{ filedata }} </pre>
   </div>
 </template>
 <script>

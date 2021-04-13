@@ -47,8 +47,11 @@ async function createWindow() {
     win.loadURL('app://./index.html')
     autoUpdater.checkForUpdatesAndNotify()
   }
-  autoUpdater.autoDownload = false;
-  autoUpdater.checkForUpdates()
+  //TODO : this was set to false - so hopefully it will automatically update
+  //autoUpdater.autoDownload = true;
+  //autoUpdater.checkForUpdates()
+
+  autoUpdater.checkForUpdatesAndNotify()
 }
 
 // Quit when all windows are closed.
