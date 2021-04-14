@@ -1,5 +1,5 @@
 <template>
     <div>
-        <button class="btn btn-info"> <span class="material-icons md-24">face</span> Web file</button>
+        <button class="btn btn-info"><i class="mdi mdi-cloud-download md-24 "></i> Download</button>
     </div>
 </template>

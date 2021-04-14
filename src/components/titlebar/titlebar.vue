@@ -1,6 +1,7 @@
 <template>
   <ElectronTitlebar
     theme="dark"
+    title="Wavemaker Cards"
     :platform="platform"
     :is-maximizable="true"
     :is-closable="true"

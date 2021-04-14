@@ -1,17 +1,24 @@
 <template>
   <div>
-    <input
+      <label for="selectFiles" class="btn btn-info">
+    <input 
+    style="display:none"
       type="file"
       id="selectFiles"
       @change="openfile"
       value="Open"
       accept=".wmproj,.json"
-    />
+  />
+  <i class="mdi mdi-file-document md-24 "></i> Open File
+      </label>  
   </div>
 </template>
 <script>
 export default {
   methods: {
+    openselector(){
+      document.getElementById('selectFiles').click()
+    },
     openfile() {
       window.wmlog("Open local file (WEB)", "warn");
 

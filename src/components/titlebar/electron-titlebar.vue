@@ -50,7 +50,7 @@
           height="12"
           viewBox="0 0 12 12"
         >
-          <g fill="#006500" fill-rule="evenodd">
+          <g fill="#006500" fill-rule="evenodd" >
             <path
               d="M5,3 C5,3 5,6.1325704 5,6.48601043 C5,6.83945045 5.18485201,7 5.49021559,7 L9,7 L9,6 L8,6 L8,5 L7,5 L7,4 L6,4 L6,3 L5,3 Z"
               transform="rotate(180 7 5)"
@@ -68,8 +68,8 @@
         <slot name="icon"></slot>
       </div>
 
-      <div class="titlebar-name" v-if="showTitle">
-        <slot name="title"></slot>
+      <div class="titlebar-name" v-if="showTitle" style="font-size:12px; font-family: 'Raleway' sans-serif;">
+        <slot name="title" ><strong style="color:orange;">wave</strong>maker</slot>
       </div>
     </div>
 
@@ -208,6 +208,7 @@ export default {
 */
     color:var(--titlebar-fg);
   background:var(--titlebar-bg);
+   border-bottom: 1px solid var(--titlebar-border);
 }
 .titlebar.titlebar-style-light {
  
