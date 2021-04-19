@@ -40,11 +40,11 @@ new Vue({
             `Progress: ${completedRows} of ${totalRows} rows completed`
           );
         },
-      })
+      }).catch(error => { console.log('caught', error.message); });
       return result
     },
     async  import_db(blob){
-      await this.db.delete()
+      await this.db.delete().catch(error => { console.log('caught', error.message); });
       await this.importDB(this.db,blob,
         {
           prettyJson: true,
@@ -55,7 +55,7 @@ new Vue({
           },
         }
         
-        )
+        ).catch(error => { console.log('caught', error.message); });
     },
     AddRecord(myTable, myData) {
      // console.log("AddRecord",myTable,myData)

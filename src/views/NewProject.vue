@@ -67,8 +67,8 @@ export default ({
             return false
           }
           // clear the existing database from the system (new one should be created with first call)
-         await this.$root.db.delete()
-         await this.$root.db.open()
+         await this.$root.db.delete().catch(error => { console.log('caught', error.message); });
+         await this.$root.db.open().catch(error => { console.log('caught', error.message); });
          // recreate the shadowDB
          this.$root.shadowDBLoad()
             let settingsObj={}
