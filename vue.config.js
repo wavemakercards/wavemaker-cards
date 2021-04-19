@@ -1,4 +1,8 @@
 module.exports = {
+  "publicPath": "./",
+  "devServer": {
+    "public": "localhost:8080"
+  },
   configureWebpack: {
     devtool: 'source-map'
   },

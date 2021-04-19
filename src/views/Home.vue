@@ -1,39 +1,80 @@
 <template>
   <div class="home">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <nav class="navbar fixtop" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
- 
-        <router-link to="/" class="nav-link" >Home</router-link> 
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" @click="$router.push('/')">
+        Home
+      </a>
+      
+      
+         <a class="navbar-item" @click="setss('bulma_stylesheet','bulma')">
+        default
+      </a>
+
+      <a class="navbar-item" @click="setss('bulma_stylesheet','bulma-cyborg')">
+        cyborg
+      </a>
+        <a class="navbar-item" @click="setss('wavemaker_stylesheet','wavemaker')">
+        WM light
+      </a>
+     <a class="navbar-item" @click="setss('wavemaker_stylesheet','wavemaker-dark')">
+        WM dark
+      </a>
+        <a class="navbar-item" @click="setss('bulma_stylesheet','bulma-material')">
+        material
+      </a>
+       <a class="navbar-item" @click="setss('bulma_stylesheet','bulma-litera')">
+        litera
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            About
+          </a>
+          <a class="navbar-item">
+            Jobs
+          </a>
+          <a class="navbar-item">
+            Contact
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Sign up</strong>
+          </a>
+          <a class="button is-light">
+            Log in
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </nav>
    <h1>UPDATED v4</h1>
@@ -63,11 +104,22 @@ export default {
   name: 'Home',
   components: {
   //  HelloWorld
+  },
+  methods:{
+    setss(target, ss){
+
+      window.SwitchStyleSheet(target, ss)
+    }
   }
 }
 </script>
 
 <style scoped>
+.fixtop{
+  position: sticky;
+  top:0px
+}
+
 .wavemaker-page{
   margin-top:10px;
   max-width: 800px;

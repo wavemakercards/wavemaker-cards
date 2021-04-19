@@ -2,12 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
-
-
-*, *:before, *:after {
-    box-sizing: border-box;
-    transition: all 0.5s;
-  }
  
   :root {
     --c0: #eceff1;
@@ -59,13 +53,16 @@
     --page-bg : var(--c7);
     --page-fg : var(--c1);
 
+    --hilight-box-fg : #fff;
+    --hilight-box-bg : purple;
+ 
     --interface-border : #ccc;
 }
 
-.mdi.md-18 { font-size: 18px; }
-.mdi.md-24 { font-size: 24px; }
-.mdi.md-36 { font-size: 36px; }
-.mdi.md-48 { font-size: 48px; }
+*, *:before, *:after {
+  box-sizing: border-box;
+  transition: all 0.1s;
+}
 
 ::-webkit-scrollbar-button {
   display: block;
@@ -86,21 +83,37 @@
   width: 10px;
 }
 
-.btn{
-  font-size: 1.4rem;
-}
-html,body{
+html{
     padding: 0;
     margin:0;
     position: relative;
-    font-size: var(--font-size)
-}
-
-
-
-body{
-background-color:var(--window-bg);
+    font-size: var(--font-size);
+/* background-color:var(--window-bg); */
+height:100%;
+overflow: hidden;
 color:var(--window-fg);
+}
+body{
+  padding:0px;
+  margin:0px;
+}
 
+.mdi.md-18 { font-size: 18px; }
+.mdi.md-24 { font-size: 24px; }
+.mdi.md-36 { font-size: 36px; }
+.mdi.md-48 { font-size: 48px; }
+
+.wmbutton-icon{
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: var(--c6);
+  color: var(--c3);
+  border:0px;
+  padding:5px 10px;
 
 }
+.wmbutton-icon:hover,.wmbutton-icon:focus,.wmbutton-icon:active{
+  background-color: var(--c3);
+  color: var(--c6);
+}
+

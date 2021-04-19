@@ -1,7 +1,9 @@
 <template>
-  <div id="app">
-  <VueTitlebar  />
-    <router-view/>
+  <div>
+    <VueTitlebar />
+    <div id="app" v-if="$root.dbloaded">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -12,22 +14,20 @@
 If there are electron specific components that are breaks ing stuff - i find this seems to work
 have a 'clean' component and when importing them use something like below
 */
-const  VueTitlebar = () =>{
-  if(process.env.IS_ELECTRON){
-  return import("@/components/titlebar/titlebar.vue")
-}else{
-  return import("@/components/titlebar/titlebar-clean.vue")
-}
-
-}
+const VueTitlebar = () => {
+  if (process.env.IS_ELECTRON) {
+    return import("@/components/titlebar/titlebar.vue");
+  } else {
+    return import("@/components/titlebar/titlebar-clean.vue");
+  }
+};
 
 export default {
-  components:{
-VueTitlebar
-  }
-}
+  components: {
+    VueTitlebar,
+  },
+};
 </script>
 <style >
-@import '~mdi/css/materialdesignicons.min.css';
-
+@import "~mdi/css/materialdesignicons.min.css";
 </style>

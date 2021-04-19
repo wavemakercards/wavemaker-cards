@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/wavemaker.css">
+    <link id="bulma_stylesheet" rel="stylesheet" href="css/bulma.css" >
+    <link id="wavemaker_stylesheet" rel="stylesheet" href="css/wavemaker.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
@@ -16,28 +16,6 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <script>
-      function wmlog(str, stl){
-
-        switch (stl) {
-          case "error":
-          style="background-color: darkred;color:#fff; padding-left:15px;padding-right:15px; border-radius:5px;"
-            break;
-            case "warn":
-          style="background-color: darkmagenta;color:#fff; padding-left:15px;padding-right:15px; border-radius:5px;"
-            break;
-        
-            case "success":
-          style="background-color: darkgreen;color:#fff; padding-left:15px;padding-right:15px; border-radius:5px;"
-            break;
-        
-          default:
-            style="background-color: darkblue;color:#fff; padding-left:15px;padding-right:15px; border-radius:5px;"
-            break;
-        }
-        console.log("wavemaker: %c✒️"+str, style);
-      }
-    </script>
-
+    <script src="js/wavemaker.js"></script>
   </body>
 </html>

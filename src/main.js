@@ -5,6 +5,7 @@ import db from "./DexieDB";
 import { uuid } from 'vue-uuid';
 import { importDB, exportDB} from "dexie-export-import";
 import router from './router'
+
 Vue.config.productionTip = false
 
 new Vue({
@@ -16,7 +17,6 @@ new Vue({
       importDB,
       exportDB,
       uuid,
-      DBexists: false,
       shadowDB: {},
       windowID: null,
       isElectron : process.env.IS_ELECTRON,
@@ -88,23 +88,15 @@ new Vue({
   //      console.log("Delete Complete")
       )
     },
-    checkDB(){
-      if (Object.keys(this.$root.shadowDB.Settings).length) {
-        console.log("LOADED Shadow Database", this.$root.shadowDB.Settings);
-        this.$root.interface.MainNavigationToggle = true;
-      } else {
-        window.wmlog("No DB found in memory - load a file/ create new", "error"); 
-        this.$root.DBexists=false
-      }
-    }
-  },
-  beforeMount() {
-    this.windowID = this.$root.uuid.v4() // each window generates a unique ID so it knows who is doing the emitting of changes
-    /*
+shadowDBLoad(){
+  /*
     The Shadow DB is a Reactive Object copy of the database
     You  WRITE to the shadowDB and save it to the database and it will emit changes to all (other) windows
     This bit here simply constructs the shadowDB object from the database
     */
+// first - clear it
+this.shadowDB = {}
+
     let dbcounter = 0
     let dblimit = 0
     this.db.tables.forEach((table) => {
@@ -124,6 +116,20 @@ new Vue({
       }
     })
 
+},
+    checkDB(){
+      if (Object.keys(this.$root.shadowDB.Settings).length) {
+        console.log("LOADED Shadow Database", this.$root.shadowDB.Settings);
+        this.$root.interface.MainNavigationToggle = true;
+      } else {
+        window.wmlog("No DB found in memory - load a file/ create new", "error"); 
+        this.$root.DBexists=false
+      }
+    }
+  },
+  beforeMount() {
+    this.windowID = this.$root.uuid.v4() // each window generates a unique ID so it knows who is doing the emitting of changes
+    this.shadowDBLoad()
   },
   mounted() {
     this.$root.db.on("changes", (changes) => {

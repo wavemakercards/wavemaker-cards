@@ -1,6 +1,6 @@
 <template>
   <div>
-      <label for="selectFiles" class="btn btn-info">
+      <label for="selectFiles" class="button  is-fullwidth">
     <input 
     style="display:none"
       type="file"

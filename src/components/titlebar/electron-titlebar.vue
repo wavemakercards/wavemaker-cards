@@ -69,7 +69,7 @@
       </div>
 
       <div class="titlebar-name" v-if="showTitle" style="font-size:12px; font-family: 'Raleway' sans-serif;">
-        <slot name="title" ><strong style="color:orange;">wave</strong>maker</slot>
+        <slot name="title"></slot>
       </div>
     </div>
 
