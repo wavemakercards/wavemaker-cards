@@ -74,6 +74,11 @@
   --navigation-button-hover-fg :var(--c8);
 
   --interface-border: #ccc;
+
+
+
+  /* not to be changed - needed for electron*/
+  --electron-offset : 0px;
 }
 
 *,
@@ -167,7 +172,7 @@ body, button, input, select, textarea {
 
 #wm_navigation {
   position: fixed;
-  top: 0px;
+  top: var(--electron-offset);
   left: 0px;
   bottom: 0px;
   width: 50px;
@@ -197,12 +202,13 @@ body, button, input, select, textarea {
 }
 .wm_scrollwindow{
   position: absolute;
-  top:0px;
+  top:var(--electron-offset);
 right:0px;
   bottom:0px;
   left:50px;
   overflow-y :auto;
   overflow-x: hidden;
+  padding: 20px;
 }
 
 .nl2br {

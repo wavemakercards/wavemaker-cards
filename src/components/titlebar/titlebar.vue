@@ -70,7 +70,10 @@ export default {
 </script>
 <style>
 /* This is needed when electron is running to keep the title bar from blocking content */
+:root{
+   --electron-offset : 28px;
+}
 #app{
-  margin-top:28px; 
+  margin-top:var(--electron-offset);
 }
 </style>

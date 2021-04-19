@@ -55,7 +55,7 @@
 
  </div>
 </div>
-        <button  @click="toggleModal"  class="button wm_button_icon is-info" style="position: fixed; top:10px; right:10px;"> <i class="mdi mdi-plus md-18"></i></button>
+        <button  @click="toggleModal"  class="button wm_button_icon is-info" style="position: fixed; top:calc(var(--electron-offset) + 10px); right:10px;"> <i class="mdi mdi-plus md-18"></i></button>
 
 <div :class="'modal '+showmodal">
   <div class="modal-background"></div>
