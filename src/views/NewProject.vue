@@ -36,13 +36,7 @@
     <div class="content">
         <label>Project Name</label>
 <input type="text" class="input" v-model="projectName" placeholder="Project Name" />
-  <label>Project Template</label>
-<div class="select" style="width:100%">
-  <select style="width:100%"  v-model="projectTemplate">
-    <option selected="selected" value="blank">Blank Project</option>
-    <option v-for="(t,i) in templateList" :key="i" :value="t.file">{{t.title}}</option>
-  </select>
-</div>
+ <p>Needs a chose online or offline option here</p>
 
 </div>
   <footer class="card-footer">
@@ -60,14 +54,9 @@
 
 <script>
 export default ({
-    data(){
+      data(){
         return{
-            projectName : "",
-            projectTemplate : "blank",
-            templateList : [
-                { title : "The BetterNovel Project" , file : "betternovel.json"},
-                { title : "Three Act Structure" , file : "3act.json"}
-            ]
+            projectName : ""
         }
     },
     methods:{
@@ -87,18 +76,16 @@ export default ({
             settingsObj.file = {location : null, path : null}
             settingsObj.projectUUID = this.$root.uuid.v4()
 
-              if(this.projectTemplate){
-                console.log("will need to import the project template file first")
-              // I'm assuming some form of json file - probably a DB export so may need to make sure that the settings table is cleards
-              }
               this.$root.shadowDB.Settings[settingsObj.projectUUID] = {settings : settingsObj}
               this.$root.UpdateRecord("Settings", settingsObj.projectUUID ,  {settings : settingsObj})
               
               this.$router.push("/project")
    
         }
-    }
-
+    },
+ beforeMount(){
+     this.$root.showNavigation =  false
+ }
 })
 </script>
 

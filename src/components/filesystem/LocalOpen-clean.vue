@@ -9,7 +9,7 @@
       value="Open"
       accept=".wmproj,.json"
   />
-  <i class="mdi mdi-file-document md-24 "></i> Open File
+  <i class="mdi mdi-file-document md-18 "></i> Open File
       </label>  
   </div>
 </template>

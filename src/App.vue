@@ -1,6 +1,7 @@
 <template>
   <div>
     <VueTitlebar />
+    <Navigation />
     <div id="app" v-if="$root.dbloaded">
       <router-view />
     </div>
@@ -21,10 +22,11 @@ const VueTitlebar = () => {
     return import("@/components/titlebar/titlebar-clean.vue");
   }
 };
-
+import Navigation from "@/components/Navigation.vue"
 export default {
   components: {
     VueTitlebar,
+    Navigation
   },
 };
 </script>

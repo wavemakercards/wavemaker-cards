@@ -15,6 +15,7 @@
   },
   "main": "background.js",
   "dependencies": {
+    "@mdi/font": "^5.9.55",
     "core-js": "^3.6.5",
     "custom-electron-titlebar": "^3.2.6",
     "dexie": "^3.0.3",

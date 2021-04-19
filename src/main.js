@@ -24,7 +24,8 @@ new Vue({
       fileinfo :{
         location : null,
         type : null
-      }
+      },
+      showNavigation :false
     }
   },
   methods:{
