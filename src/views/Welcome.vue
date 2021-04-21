@@ -9,10 +9,8 @@
           <div class="media">
             <div style="text-align: center; width: 100%">
               <logo style="width:50px;" />
-              <p class="title is-4">Create a New Project</p>
-              <p class="subtitle is-6">
-                Choose a name and where to save your work
-              </p>
+              <p class="title is-4">Wavemaker Cards</p>
+
             </div>
           </div>
           <div class="content">
@@ -24,7 +22,7 @@
                   alt="New project"
                  title="New project"
                 >
-           <i class="mdi mdi-folder-plus md-18"></i>
+          <i class="material-icons">create_new_folder</i> 
                 </button>
               </div>
 
@@ -35,7 +33,7 @@
 
                 {{$root.shadowDB.Settings[Object.keys($root.shadowDB.Settings)[0]].settings.title}}
                 <button @click="$router.push('project')" class="button">
-                <i class="mdi mdi-file-document md-18 "></i>  Continue Working
+                <i class="material-icons">chevron_right</i>  Continue Working
                 </button>
               </div>
 

@@ -1,10 +1,11 @@
 <template>
   <div>
     <VueTitlebar />
-    <Navigation />
+  
     <div id="app" v-if="$root.dbloaded">
       <router-view />
     </div>
+      <Navigation v-if="$root.showNavigation" />
   </div>
 </template>
 
@@ -19,7 +20,7 @@ const VueTitlebar = () => {
   if (process.env.IS_ELECTRON) {
     return import("@/components/titlebar/titlebar.vue");
   } else {
-    return import("@/components/titlebar/titlebar-clean.vue");
+    return import("@/components/titlebar/titlebarWeb.vue");
   }
 };
 import Navigation from "@/components/Navigation.vue"
@@ -31,5 +32,5 @@ export default {
 };
 </script>
 <style >
-@import "~mdi/css/materialdesignicons.min.css";
+
 </style>

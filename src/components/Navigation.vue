@@ -2,10 +2,11 @@
   <div
     id="wm_navigation"
     class="animate__animated animate__fadeIn"
-    v-if="$root.showNavigation"
   >
     <button @click="navigateTo('')">
-      <logo />
+         <i class="material-icons">logout</i>
+    
+     <logo v-if="1===0" /> 
     </button>
 
     <button
@@ -14,8 +15,7 @@
       @click="navigateTo(item.text)"
       :title="item.tooltip"
       active
-    >
-      <i :class="'mdi mdi-' + item.icon + ' md-18'"></i>
+    >          <i class="material-icons">{{item.icon}}</i>
     </button>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
   methods: {
     navigateTo(link) {
       this.$router.push("/" + link).catch(() => {});
-      console.log(this.$route.path);
+     // console.log(this.$route.path);
     },
   },
   data() {
@@ -40,13 +40,13 @@ export default {
         { text: "project", icon: "home", tooltip: "Project Home" },
         {
           text: "writer",
-          icon: "book-open-page-variant",
+          icon: "import_contacts",
           tooltip: "Writing Tool",
         },
-        { text: "timeline", icon: "timer-sand", tooltip: "Timeline Tool" },
-        { text: "snowflake", icon: "snowflake", tooltip: "Snowflake Tool" },
-        { text: "gridplanner", icon: "grid", tooltip: "Grid Planner Tool" },
-        { text: "mindmap", icon: "vector-triangle", tooltip: "Mindmap Tool" },
+        { text: "timeline", icon: "access_time", tooltip: "Timeline Tool" },
+        { text: "snowflake", icon: "ac_unit", tooltip: "Snowflake Tool" },
+        { text: "gridplanner", icon: "view_comfy", tooltip: "Grid Planner Tool" },
+        { text: "mindmap", icon: "schema", tooltip: "Mindmap Tool" },
         { text: "exportoptions", icon: "launch", tooltip: "Export Options" },
         { text: "database", icon: "layers", tooltip: "Cards Database" },
         { text: "settings", icon: "settings", tooltip: "Settings" },
@@ -54,11 +54,17 @@ export default {
       ],
     };
   },
+  beforeMount(){
+    document.body.classList.add("wm_sidenav");
+  },
+  beforeDestroy(){
+    document.body.classList.remove("wm_sidenav");
+  }
 };
 </script>
 
 <style>
-body {
-  margin-left: 50px;
+.wm_sidenav{
+  margin-left:50px;
 }
 </style>

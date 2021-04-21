@@ -25,6 +25,12 @@ new Vue({
         location : null,
         type : null
       },
+      writer:{
+        activenode :  {},
+      },
+      addcard:{
+        currentnode :  null,
+      },
       showNavigation :false
     }
   },
@@ -125,6 +131,8 @@ this.shadowDB = {}
       } else {
         window.wmlog("No DB found in memory - load a file/ create new", "error"); 
         this.$root.DBexists=false
+        // this needs to route to the home in this event
+        this.$router.push("/").catch(() => {});
       }
     }
   },

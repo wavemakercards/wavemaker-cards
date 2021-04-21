@@ -5,10 +5,17 @@ import Home from '../views/Home.vue'
 import NewProject from '../views/NewProject.vue'
 import ProjectHome from '../views/ProjectHome.vue'
 import Writer from '../views/Writer.vue'
+
+import WriterItem from '../views/WriterItem.vue'
+import PlanningboardItem from '../views/PlanningboardItem.vue'
 import Snowflake from '../views/Snowflake.vue'
+import SnowflakeItem from '../views/SnowflakeItem.vue'
 import Timeline from '../views/Timeline.vue'
+import TimelineItem from '../views/TimelineItem.vue'
 import Gridplanner from '../views/Gridplanner.vue'
+import GridplannerItem from '../views/GridplannerItem.vue'
 import Mindmap from '../views/Mindmap.vue'
+import MindmapItem from '../views/MindmapItem.vue'
 import Settings from '../views/Settings.vue'
 import ExportFile from '../views/ExportFile.vue'
 
@@ -41,9 +48,24 @@ const routes = [
     component: Writer
   },
   {
+    path: '/writer/:id',
+    name: 'WriterItem',
+    component: WriterItem
+  },
+  {
+    path: '/planningboard/:id',
+    name: 'PlanningboardItem',
+    component: PlanningboardItem
+  },
+  {
     path: '/snowflake',
     name: 'Snowflake Home',
     component: Snowflake
+  },
+  {
+    path: '/snowflake/:id',
+    name: 'SnowflakeItem',
+    component: SnowflakeItem
   },
   {
     path: '/timeline',
@@ -51,9 +73,19 @@ const routes = [
     component: Timeline
   },
   {
+    path: '/timeline/:id',
+    name: 'TimelineItem',
+    component: TimelineItem
+  },
+  {
     path: '/gridplanner',
     name: 'Gridplanner Home',
     component: Gridplanner
+  },
+  {
+    path: '/gridplanner/:id',
+    name: 'GridplannerItem',
+    component: GridplannerItem
   },
   {
     path: '/mindmap',
@@ -61,12 +93,17 @@ const routes = [
     component: Mindmap
   },
   {
+    path: '/mindmap/:id',
+    name: 'MindmapItem',
+    component: MindmapItem
+  },
+  {
     path: '/settings',
     name: 'Settings Home',
     component: Settings
   },
   {
-    path: '/export',
+    path: '/exportoptions',
     name: 'Exportoptions Home',
     component: ExportFile
   },
@@ -74,7 +111,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: process.env.IS_ELECTRON ? 'hash' : 'history',
+  mode: process.env.IS_ELECTRON ? 'hash' : 'hash',
   base: process.env.BASE_URL,
   routes
 })

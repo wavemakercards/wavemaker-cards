@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="button is-primary is-fullwidth" @click="openfile"><i class="mdi mdi-file-document md-18 "></i> OPEN FILE</button>
+    <button class="button is-primary is-fullwidth" @click="openfile"><i class="material-icons">folder_open</i></button>
     {{ filepath }}
   </div>
 </template>

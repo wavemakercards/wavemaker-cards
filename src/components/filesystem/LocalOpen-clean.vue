@@ -9,7 +9,7 @@
       value="Open"
       accept=".wmproj,.json"
   />
-  <i class="mdi mdi-file-document md-18 "></i> Open File
+<i class="material-icons">cloud_upload</i> 
       </label>  
   </div>
 </template>

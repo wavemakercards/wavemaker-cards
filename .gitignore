@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
-/dist
-
+/dist 
+#should maybe allow the dist folder - or have a release foleder(maybe versioned?)
 
 # local env files
 .env.local
