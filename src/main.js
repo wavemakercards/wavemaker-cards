@@ -5,12 +5,22 @@ import db from "./DexieDB";
 import { uuid } from 'vue-uuid';
 import { importDB, exportDB} from "dexie-export-import";
 import router from './router'
+import { TiptapVuetifyPlugin } from 'tiptap-vuetify'
+import vuetify from './plugins/vuetify';
+// don't forget to import CSS styles
+import 'tiptap-vuetify/dist/main.css'
+// Vuetify's CSS styles 
+import 'vuetify/dist/vuetify.min.css'
 
 Vue.config.productionTip = false
+Vue.use(TiptapVuetifyPlugin, {
+  vuetify
+});
 
 new Vue({
   router,
   render: h => h(App),
+
   data(){
     return{
       db,
@@ -31,9 +41,16 @@ new Vue({
       addcard:{
         currentnode :  null,
       },
-      showNavigation :false
+      interface: {
+        MainNavigationToggle : false,
+        showPanel: false,
+        notesPanel: false,
+        SelectedNode: {},
+        manuscriptUUID: false
+      }
     }
   },
+
   methods:{
     importFile(data){
       console.log("Import", JSON.parse(data))
@@ -136,10 +153,14 @@ this.shadowDB = {}
       }
     }
   },
+
   beforeMount() {
     this.windowID = this.$root.uuid.v4() // each window generates a unique ID so it knows who is doing the emitting of changes
     this.shadowDBLoad()
   },
+
+  vuetify,
+
   mounted() {
     this.$root.db.on("changes", (changes) => {
       changes.forEach((change) => {
