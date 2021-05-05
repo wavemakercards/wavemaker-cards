@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="wm_sticky_toolbar">
-
-      <button class="btn_right" @click="addNote($root.writer.activenode)">
-        <i class="material-icons">add_comment</i>
-      </button>
-    </div>
+    <v-app-bar dense class="sticky" color="c9" elevation="0">
+      <v-spacer></v-spacer>
+      <v-btn icon @click="addNote($root.writer.activenode)">
+        <v-icon>add_comment</v-icon>
+      </v-btn>
+    </v-app-bar>
 
     <draggable
       v-model="$root.writer.activenode.notes"
@@ -14,7 +14,8 @@
       @change="SaveChange"
     >
       <transition-group type="transition" name="flip-list" class="" tag="div">
-        <div class="card"
+        <v-card
+          class="ma-4 pa-2"
           v-for="(card, cardIndex) in $root.writer.activenode.notes"
           :key="cardIndex"
         >
@@ -22,7 +23,7 @@
             <v-icon>drag_handle</v-icon>
           </div>
           <CardEditor :uuid="card.uuid" />
-        </div>
+        </v-card>
       </transition-group>
     </draggable>
         <AddCardWidget v-if="showModal" @close-modal="closeModal" />
@@ -68,11 +69,17 @@ export default {
 
 
 <style scoped>
+.sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+}
 
 .boxhandle {
   text-align: right;
   cursor: move;
 }
+
 .handle {
   cursor: move;
 }

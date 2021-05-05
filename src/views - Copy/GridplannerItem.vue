@@ -1,22 +1,21 @@
 <template>
-  <v-main>
+ <div class="wm_scrollwindow">
     <!-- needs to make sure its loaded -->
     <div v-if="!$root.shadowDB.Gridplanner[$route.params.id]">
       loading ...
     </div>
     <div v-else>
-      <v-row no-gutters align="center" justify="center">
-        <v-col cols="12" sm="12" md="6">
-          <v-text-field
+      <div>
+        <div>
+          <input type="text"
             label="Title"
             v-model="$root.shadowDB.Gridplanner[$route.params.id].title"
-            solo
             @change="SaveChange()"
-          ></v-text-field>
-          <v-btn @click="AddColumn"> Add Column</v-btn>
-          <v-btn @click="AddRow"> Add Row</v-btn>
-        </v-col>
-      </v-row>
+          />
+          <button class="button is-small is-success" @click="AddColumn"> Add Column</button>
+          <button class="button is-small is-success" @click="AddRow"> Add Row</button>
+        </div>
+      </div>
       <div class="scroller">
         <!-- the header row -->
         <div
@@ -46,7 +45,7 @@
                 :key="headerindex"
                 scope="headings"
               >
-                <v-textarea
+                <textarea
                   auto-grow
                   rows="1"
                   flat
@@ -57,7 +56,7 @@
                   "
                   @change="SaveChange()"
                   class="centerText"
-                ></v-textarea>
+                ></textarea>
               </div>
             </transition-group>
           </draggable>
@@ -91,7 +90,7 @@
             >
               <div class="tableBlock rowhandle">
                 <div>
-                  <v-textarea
+                  <textarea
                     auto-grow
                     rows="1"
                     flat
@@ -102,7 +101,7 @@
                     "
                     @change="SaveChange()"
                     class="centerText"
-                  ></v-textarea>
+                  ></textarea>
                 </div>
               </div>
               <!-- a box -->
@@ -129,28 +128,28 @@
                     class=""
                     tag="div"
                   >
-                    <v-card
-                      class="ma-1"
+                    <div
+                      class="card"
                       v-for="(card, cardIndex) in $root.shadowDB.Gridplanner[
                         $route.params.id
                       ].content.list[rowindex][headerindex]"
                       :key="cardIndex"
                     >
-                      <v-card-text>
+                      <div>
                         <div class="boxhandle">
-                          <v-icon>drag_handle</v-icon>
+                          <i class="mdi mdi-drag md-24"></i>
                         </div>
                         <CardEditor :uuid="card" />
-                      </v-card-text>
-                    </v-card>
+                      </div>
+                    </div>
                   </transition-group>
                 </draggable>
 
-                <v-btn
+                <button
                   @click="AddCard(rowindex, headerindex)"
                   style="width: 340px; margin-left: 5px"
                   tile
-                  ><v-icon>add</v-icon></v-btn
+                  ><i class="mdi mdi-plus md-24"></i></button
                 >
               </div>
             </div>
@@ -161,7 +160,7 @@
         <!-- /a row -->
       </div>
     </div>
-  </v-main>
+  </div>
 </template>
 
 <script>
@@ -294,7 +293,7 @@ export default {
   width: 350px;
   min-height: 20px;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
 }
 .headerRow {
   padding-left: 350px;

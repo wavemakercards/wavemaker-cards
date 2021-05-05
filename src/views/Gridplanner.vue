@@ -1,116 +1,68 @@
 <template>
- <div class="wm_scrollwindow">
+ <v-main>
+    <v-container>
+    <v-row no-gutters  justify="center">
+      <h1>Your Grids</h1>
+    </v-row>
 
+  <v-row no-gutters align="center" justify="center">
 
-    
-      <h1 class="title"
-      style="display:block;  background-color: var(--c7); padding:5px; text-align:center; margin-bottom:10px; "
-      >Your Planning Grids</h1>
-    
+   <v-col
 
-<div class="columns is-tablet">
-  <div class="column is-half-tablet is-offset-one-quarter ">
-   <div  v-for="(grid, index) in $root.shadowDB.Gridplanner"  :key="index" >
-
-
-<div class="card">
-
-  <div class="card-content">
-       <button  @click="DeleteMe(grid.uuid)" class="button wm_button_icon is-danger" style="position:absolute; top:10px; right:10px;" ><i class="mdi mdi-delete md-24"></i></button>
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-        <i class="mdi mdi-grid md-36"></i>
-        </figure>
-      </div>
-      <div class="media-content">
-        <p class="title is-4">{{ grid.title }}</p>
-      </div>
-    </div>
-
-    <div class="content nl2br">
-      {{ grid.description }}
-    </div>
-  </div>
-   <footer class="card-footer">
-
- 
-  <button  @click="$router.push('/Gridplanner/' + grid.uuid)"  class="button is-success card-footer-item"
-          ><i class="mdi mdi-pencil md-18"></i> </button>
-  </footer>
-</div>
-
-         
- 
+        v-for="(gridplanner, index) in $root.shadowDB.Gridplanner"
+        :key="index"
+        cols="12" 
+      >
+      <v-card
+           class="ma-2"
+        outlined
+      >
      
-
-
-
-
-
-   </div>
-
- </div>
-</div>
-        <button  @click="toggleModal"  class="button wm_button_icon is-info" style="position: fixed; top:calc(var(--electron-offset) + 10px); right:10px;"> <i class="mdi mdi-plus md-18"></i></button>
-
-<div :class="'modal '+showmodal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">New Grid</p>
-      <button class="delete" aria-label="close" @click="toggleModal"></button>
-    </header>
-    <section class="modal-card-body">
-     <label>Title</label>
-   <input class="input is-small" type="text" placeholder="title ..." v-model="newGrid.title">
-
-     <label>Summary</label>
-     <textarea class="textarea is-small" placeholder="type here ..." v-model="newGrid.description"></textarea>
-   
-
-    </section>
-    <footer class="modal-card-foot">
+      <v-card-title>{{ gridplanner.title }}</v-card-title>
+        <v-card-actions>
      
-      <button class="button is error card-footer-item" @click="toggleModal">Cancel</button>
-       <button class="button is-success card-footer-item" @click="NewItem">Save changes</button>
-    </footer>
-  </div>
-</div>
-   </div>
+<v-btn  color="success" class="ma-2" @click="$router.push('/gridplanner/' + gridplanner.uuid)"
+          >Edit <v-icon>edit</v-icon> </v-btn>
+
+
+          <v-btn
+            @click="DeleteMe(gridplanner.uuid)"
+            icon
+            absolute
+            right
+            top
+            class="error"
+          >
+            <v-icon>delete</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+
+   </v-col>
+    </v-row>
+    <v-row>
+        <v-btn fab :style="{left: '50%', transform:'translateX(-50%)'}" large @click="NewItem()"> <v-icon> add </v-icon></v-btn>
+    </v-row>
+  </v-container>
+   </v-main>
 </template>
 
 <script>
 export default {
-    data(){
-        return {
-            showmodal : '',
-            newGrid : { title :'', author : '' , description :'' , template :''}
-        }
-    },
   methods: {
-      toggleModal(){
-            if(this.showmodal===''){
-                 this.showmodal ="is-active"
-            }else{
-                this.showmodal =""
-            }          
-      },
     NewItem() {
-           let uuid=this.$root.uuid.v4();
-  let n = {};
-      n.uuid =uuid
-      n.title = this.newGrid.title;
-      n.description = this.newGrid.description;
-          n.content = {
+      let uuid=this.$root.uuid.v4();
+      let n = {};
+      n.title = "";
+      // horizontal and vertical arrays labels
+   n.uuid =uuid
+      n.content = {
           headers : [""],
           rowtitle : [""],
           list : [[[]]] // 1 row 1 col array of arrays
       };
       this.$root.AddRecord("Gridplanner", n);
-     //no to heading stright off?
-     this.toggleModal()
-     // this.$router.push('/writer/'+ uuid)
+      this.$router.push('/gridplanner/'+ uuid)
     },
     DeleteMe(myKey) {
       if (confirm("sure?")) {
@@ -118,19 +70,5 @@ export default {
       }
     },
   },
-  beforeMount() {
-    this.$root.showNavigation = true;
-  },
 };
 </script>
-
-<style scoped>
-.card-footer-item{
-    border:0px;
-    border-radius :0px;
-    margin:5px;
-}
-.card{
-  margin-bottom:30px;
-}
-</style>

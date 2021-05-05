@@ -1,122 +1,66 @@
 <template>
- <div class="wm_scrollwindow">
+ <v-main>
+    <v-container fluid>
+    <v-row no-gutters align="center" justify="center">
+      <v-col  align="center" justify="center">
+      <h1>Your Manuscripts</h1>
+      </v-col>
+    </v-row>
+    <v-row no-gutters  >
 
-
-    
-      <h1 class="title"
-      style="display:block;  background-color: var(--c7); padding:5px; text-align:center; margin-bottom:10px; "
-      >Your Manuscripts</h1>
-    
-
-<div class="columns is-tablet">
-  <div class="column is-half-tablet is-offset-one-quarter ">
-   <div  v-for="(writer, index) in $root.shadowDB.Writer"  :key="index" >
-
-
-<div class="card">
-
-  <div class="card-content">
-       <button  @click="DeleteMe(writer.uuid)" class="button  is-danger" style="position:absolute; top:10px; right:10px;" ><i class="material-icons">delete</i></button>
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-       <i class="material-icons">book</i>
-        </figure>
-      </div>
-      <div class="media-content">
-        <p class="title is-4">{{ writer.title }}</p>
-        <p class="subtitle is-6">{{ writer.author }}</p>
-      </div>
-    </div>
-
-    <div class="content nl2br">
-      {{ writer.description }}
-    </div>
-  </div>
-   <footer class="card-footer">
- <button  @click="$router.push('/planningboard/' + writer.uuid)"  class="button is-info card-footer-item"
-          ><i class="material-icons">comments</i> </button>
- 
-  <button  @click="$router.push('/writer/' + writer.uuid)"  class="button is-success card-footer-item"
-          ><i class="material-icons">edit</i> </button>
-  </footer>
-</div>
-
-         
- 
+   <v-col
+        v-for="(writer, index) in $root.shadowDB.Writer"
+        :key="index"
+        cols="12" sm="6"  md="4" 
+      >
+      <v-card
+           class="ma-2"
+        outlined
+      >
+                <v-card-actions>
+          <v-btn
+            @click="DeleteMe(writer.uuid)"
+            
+          small
+            class="error"
+          
+          >
+            <v-icon>delete</v-icon>
+          </v-btn>
+        </v-card-actions>
+      <v-card-title>{{ writer.title }}</v-card-title>
+      <v-card-text> {{ writer.author }}</v-card-text>
+        <v-card-actions>
      
+<v-btn  color="success" class="ma-2" @click="$router.push('/writer/' + writer.uuid)"
+          >Edit <v-icon>edit</v-icon> </v-btn>
 
 
+<v-btn  color="info" class="ma-2" @click="$router.push('/planningboard/' + writer.uuid)"
+          >Notes <v-icon>comment</v-icon> </v-btn>
 
+       </v-card-actions>
+   
+      </v-card>
 
-
-   </div>
-
- </div>
-</div>
-        <button  @click="toggleModal"  class="button  is-info" style="position: fixed; top:calc(var(--electron-offset) + 10px); right:10px;"> <i class="material-icons">add</i></button>
-
-<div :class="'modal '+showmodal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">New Manuscript</p>
-      <button class="delete" aria-label="close" @click="toggleModal"></button>
-    </header>
-    <section class="modal-card-body">
-     <label>Title</label>
-   <input class="input is-small" type="text" placeholder="My Great Novel" v-model="newManuscript.title">
-     <label>Author</label>
-     <input class="input is-small" type="text" placeholder="A. N. Other" v-model="newManuscript.author">
-     <label>Summary</label>
-     <textarea class="textarea is-small" placeholder="Brief Summary of Novel" v-model="newManuscript.description"></textarea>
-     <label>Template</label><BR/>
-<div class="select is-small">
-  <select v-model="newManuscript.template">
-    <option value="">Blank Template</option>
-    <option value="Atemplate.json">Placeholder Template</option>
-    <option value="Atemplate.json">Placeholder Template</option>
-    <option value="Atemplate.json">Placeholder Template</option>
-    <option value="Atemplate.json">Placeholder Template</option>
-    <option value="Atemplate.json">Placeholder Template</option>
-    <option value="Atemplate.json">Placeholder Template</option>
-  </select>
-</div>
-    </section>
-    <footer class="modal-card-foot">
-     
-      <button class="button is error card-footer-item" @click="toggleModal">Cancel</button>
-       <button class="button is-success card-footer-item" @click="NewItem">Save changes</button>
-    </footer>
-  </div>
-</div>
-   </div>
+   </v-col>
+    </v-row>
+        <v-row>
+        <v-btn fab   :style="{left: '50%', transform:'translateX(-50%)'}" large @click="NewItem()"> <v-icon> add </v-icon></v-btn>
+    </v-row>
+  </v-container>
+   </v-main>
 </template>
 
 <script>
 export default {
-    data(){
-        return {
-            showmodal : '',
-            newManuscript : { title :'', author : '' , description :'' , template :''}
-        }
-    },
   methods: {
-      toggleModal(){
-            if(this.showmodal===''){
-                 this.showmodal ="is-active"
-            }else{
-                this.showmodal =""
-            }          
-      },
     NewItem() {
            let uuid=this.$root.uuid.v4();
   let n = {};
       n.uuid =uuid
-      n.title = this.newManuscript.title;
-      n.author = this.newManuscript.author;
-      n.description = this.newManuscript.description;
-      n.template = this.newManuscript.template;
+      n.title = "";
+      n.author = "";
       n.files = [
         {
           type: "folder",
@@ -127,12 +71,8 @@ export default {
           active: false,
         },
       ];
-        /* TODO Will need to also import template data here if needed */
-
       this.$root.AddRecord("Writer", n);
-     //no to heading stright off?
-     this.toggleModal()
-     // this.$router.push('/writer/'+ uuid)
+         this.$router.push('/writer/'+ uuid)
     },
     DeleteMe(myKey) {
       if (confirm("sure?")) {
@@ -140,19 +80,5 @@ export default {
       }
     },
   },
-  beforeMount() {
-    this.$root.showNavigation = true;
-  },
 };
 </script>
-
-<style scoped>
-.card-footer-item{
-    border:0px;
-    border-radius :0px;
-    margin:5px;
-}
-.card{
-  margin-bottom:30px;
-}
-</style>

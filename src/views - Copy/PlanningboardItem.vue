@@ -1,5 +1,5 @@
 <template>
- <v-main>
+ <div>
   <div class="scroller" style="vertical-align:top">
         <!-- the header row -->
         <div
@@ -12,7 +12,7 @@
 
    </div>
   </div>
-   </v-main>
+   </div>
 </template>
 
 <script>
@@ -45,12 +45,13 @@ export default {
             }
           });
       },
+  },  beforeMount() {
+    this.$root.showNavigation = true;
   },
       mounted(){
         this.NotesArray=[]
         this.GetNotesObjects(this.$root.shadowDB.Writer[this.$route.params.id].files)
       }
-
 }
 </script>
 

@@ -1,16 +1,12 @@
 <template>
   <div>
-      <label for="selectFiles" class="button  is-fullwidth">
-    <input 
-    style="display:none"
-      type="file"
+<v-file-input
       id="selectFiles"
-      @change="openfile"
-      value="Open"
-      accept=".wmproj,.json"
-  />
-<i class="material-icons">cloud_upload</i> 
-      </label>  
+    accept=".wmproj,.json"
+        @change="openfile"
+        prepend-icon="cloud_upload"
+></v-file-input>
+
   </div>
 </template>
 <script>

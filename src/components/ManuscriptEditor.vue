@@ -1,5 +1,5 @@
 <template>
-<div style="max-width:600px; margin:0 auto">
+<div >
 <div v-if="!$root.shadowDB.ManuscriptCards[this.uuid]" class="" >
       This card is not in the database
 </div>

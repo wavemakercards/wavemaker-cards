@@ -2,27 +2,27 @@
   <v-main>
     <v-container>
       <v-row no-gutters justify="center">
-        <h1>Your Mindmpas</h1>
+        <h1>Your Grids</h1>
       </v-row>
 
       <v-row no-gutters align="center" justify="center">
         <v-col
-          v-for="(mindmap, index) in $root.shadowDB.Mindmap"
+          v-for="(gridplanner, index) in $root.shadowDB.Gridplanner"
           :key="index"
           cols="12"
         >
           <v-card class="ma-2" outlined>
-            <v-card-title>{{ mindmap.title }}</v-card-title>
+            <v-card-title>{{ gridplanner.title }}</v-card-title>
             <v-card-actions>
               <v-btn
                 color="success"
                 class="ma-2"
-                @click="$router.push('/mindmap/' + mindmap.uuid)"
+                @click="$router.push('/gridplanner/' + gridplanner.uuid)"
                 >Edit <v-icon>edit</v-icon>
               </v-btn>
 
               <v-btn
-                @click="DeleteMe(mindmap.uuid)"
+                @click="DeleteMe(gridplanner.uuid)"
                 icon
                 absolute
                 right
@@ -63,16 +63,16 @@
           <v-icon>close</v-icon>
         </v-btn>
         <v-card-title class="headline grey lighten-2">
-          <p class="modal-card-title">Create New</p>
+          <p class="modal-card-title">New Grid</p>
         </v-card-title>
 
         <v-card-text>
-          <v-text-field label="Title" v-model="newMindmap.title"></v-text-field>
+          <v-text-field label="Title" v-model="newGrid.title"></v-text-field>
 
           <v-textarea
             label="Description"
             auto-grow
-            v-model="newMindmap.description"
+            v-model="newGrid.description"
           ></v-textarea>
         </v-card-text>
 
@@ -93,7 +93,7 @@ export default {
   data() {
     return {
       showmodal: "",
-      newMindmap: { title: "", author: "", description: "", template: "" },
+      newGrid: { title: "", author: "", description: "", template: "" },
     };
   },
   methods: {
@@ -108,21 +108,21 @@ export default {
       let uuid = this.$root.uuid.v4();
       let n = {};
       n.uuid = uuid;
-      n.title = this.newMindmap.title;
-      n.description = this.newMindmap.description;
+      n.title = this.newGrid.title;
+      n.description = this.newGrid.description;
       n.content = {
         headers: [""],
         rowtitle: [""],
         list: [[[]]], // 1 row 1 col array of arrays
       };
-      this.$root.AddRecord("Mindmap", n);
+      this.$root.AddRecord("Gridplanner", n);
       //no to heading stright off?
       this.toggleModal();
       // this.$router.push('/writer/'+ uuid)
     },
     DeleteMe(myKey) {
       if (confirm("sure?")) {
-        this.$root.DeleteRecord("Mindmap", myKey);
+        this.$root.DeleteRecord("Gridplanner", myKey);
       }
     },
   },

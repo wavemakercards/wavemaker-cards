@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Welcome from '../views/Welcome.vue'
-import Home from '../views/Home.vue'
 import NewProject from '../views/NewProject.vue'
 import ProjectHome from '../views/ProjectHome.vue'
 import Writer from '../views/Writer.vue'
@@ -26,11 +25,6 @@ const routes = [
     path: '/',
     name: 'Welcome',
     component: Welcome
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home
   },
   {
     path: '/newproject',

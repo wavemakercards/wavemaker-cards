@@ -4,49 +4,42 @@
     tag="div"
     :delay="200"
     :delayOnTouchOnly="true"
-    @end="savechanges"
-    v-model="list.files"
+     @end="savechanges"
+     v-model="list.files"
   >
     <div :key="index" v-for="(el, index) in list.files">
-      <div
-        class="wm_manuscript_item"
-        :class="{ manuscript_active: el.uuid === $root.writer.activenode.uuid }"
-        @click="MakeCurrentNode(el)"
-      >
-        <button @click="toggleOpenFolder(el)" v-if="el.type === 'folder'">
-          <i class="material-icons" v-if="!el.open">folder</i>
-          <i class="material-icons" v-if="el.open">folder_open</i>
-        </button>
-        <button v-else>
-          <i class="material-icons">notes</i>
-        </button>
-        <div class="wm_manuscript_item_title">
-          <div v-if="el.type === 'folder'">
-            <div v-if="el.title">{{ el.title }}</div>
-            <div v-else><em style="opacity: 30%">New Folder</em></div>
-          </div>
+      <v-list-item link  :class="{ accent : (el === $root.writer.activenode)}"  @click="MakeCurrentNode(el)">
+      <v-list-item-action @click="toggleOpenFolder(el)" v-if="el.type==='folder'">
+          <v-icon v-if="!el.open">folder</v-icon>
+           <v-icon v-if="el.open">folder_open</v-icon>
+        </v-list-item-action>
+        <v-list-item-action v-else>
+          <v-icon>notes</v-icon>
+        </v-list-item-action>
 
-          <div v-if="el.type==='file'">
-            <div v-if="$root.shadowDB.ManuscriptCards[el.uuid]">
-              <span v-if="$root.shadowDB.ManuscriptCards[el.uuid].title">
-                {{ $root.shadowDB.ManuscriptCards[el.uuid].title }}</span
-              >
-              <em v-else style="opacity: 30%">New Card</em>
-            </div>
-            <em v-else style="opacity: 30%">pending</em>
-          </div>
-      
+        <v-list-item-content  v-if="el.type==='folder'" >
+          <v-list-item-title v-if="el.title" >{{el.title }}</v-list-item-title>
+            <v-list-item-title v-else ><em style="opacity:30%">New Folder</em></v-list-item-title>
+        </v-list-item-content>
 
-
-          <!--
-        <button v-if="el.active">
+        <v-list-item-content v-if="el.type==='file'">
+          <v-list-item-title v-if="$root.shadowDB.ManuscriptCards[el.uuid]">
+          <span v-if="$root.shadowDB.ManuscriptCards[el.uuid].title!=''"> {{ $root.shadowDB.ManuscriptCards[el.uuid].title }}</span>
+         <em v-else style="opacity:30%">New Card</em>
+          </v-list-item-title>
+          <v-list-item-title v-else><em  style="opacity:30%">New Card</em></v-list-item-title>
+        </v-list-item-content>
+<!--
+        <v-list-item-action v-if="el.active">
           <v-icon>check_box</v-icon>
-        </button>
-        --></div>
-      </div>
+        </v-list-item-action>
+        -->
+      </v-list-item>
 
-      <div v-if="el.open && el.type === 'folder'">
+      <div v-if="el.open && el.type==='folder'">
+      
         <ManuscriptItem :list="el" class="subfolder" />
+  
       </div>
     </div>
   </draggable>
@@ -57,23 +50,25 @@ import draggable from "vuedraggable";
 export default {
   name: "ManuscriptItem",
   methods: {
-    savechanges() {
+    savechanges(){
       // just save the stuff
-      this.$root.UpdateRecord(
+          this.$root.UpdateRecord(
         "Writer",
         this.$route.params.id,
         this.$root.shadowDB.Writer[this.$route.params.id]
       );
     },
+ 
+toggleOpenFolder(el){
+  el.open=!el.open
+  this.savechanges()
+},
 
-    toggleOpenFolder(el) {
-      el.open = !el.open;
-      this.savechanges();
-    },
+
     MakeCurrentNode(el) {
       if (this.$root.writer.activenode === el) {
         //toggle it off // NO shit behaviour with the mone node added
-        // this.$root.writer.activenode = {};
+       // this.$root.writer.activenode = {};
       } else {
         this.$root.writer.activenode = el;
       }
@@ -116,7 +111,7 @@ export default {
   padding: 10px;
   text-align: left;
   font-size: 0.5rem;
-  padding-left: 20px;
+  margin-left: 20px;
 }
 .subfolder:empty::after {
   padding-left: 10px;
@@ -131,9 +126,4 @@ export default {
 .ghost {
   opacity: 0.5;
 }
-
-
-
-
-
 </style>
