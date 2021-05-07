@@ -58,7 +58,7 @@
 
             </v-list>
           </v-menu>
-           <v-toolbar-title>Wavemaker <span class="logo-text-4">4</span></v-toolbar-title>
+           <v-toolbar-title>Wavemaker </v-toolbar-title>
 
 <!--
       <v-btn icon link  @click="$router.push('/')" >   
@@ -92,7 +92,7 @@
 -->
 
  <v-spacer></v-spacer>
-
+ <span class="version">v.{{ver}} ({{rel}})</span>
  <v-btn icon  @click="$router.go(-1)"  v-if="this.$route.params.id"  >
             <v-icon>cancel</v-icon>
         </v-btn >
@@ -153,9 +153,13 @@
 </template>
 
 <script>
+import {version, release} from '../package'
+
 export default {
   data(){
       return{
+        ver : version,
+        rel : release,
           menuitems : [
               { text :'', icon : "whatshot", tooltip : "Welcome"},
               { text :'project', icon : "home" , tooltip : "Project Home"},
@@ -175,3 +179,13 @@ export default {
   }  
 }
 </script>
+
+<style >
+.version{
+  font-size: 8px;
+  padding:1px 5px 1px 5px;
+  background-color: purple;
+  border-radius: 25px;
+
+}
+</style>

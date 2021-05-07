@@ -2,26 +2,6 @@
   <div>
 
 
-<div class="modal" :class="{ 'is-active' : showModal1}">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close" @click="closeModal()"></button>
-    </header>
-    <section class="modal-card-body">
-      <!-- Content ... -->
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-      <button class="button"  @click="closeModal()">Cancel</button>
-    </footer>
-  </div>
-</div>
-
-
-<!--
-
     <v-dialog v-model="showModal1" width="500" persistent>
       <v-card>
         <v-card-actions>
@@ -99,7 +79,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    -->
+
   </div>
 </template>
 
@@ -111,10 +91,10 @@ export default {
       console.log(this.$root.addcard.currentnode);
     },
     closeModal() {
-      console.log("close emit");
+  
       this.showModal1 = true;
       this.showModal2 = false;
-      this.$emit("close-modal");
+     this.$root.addCard.show=false
     },
     addUUidtolist(uuid) {
       let obj = {
@@ -139,7 +119,7 @@ export default {
       );
       this.$root.addcard.currentnode = null;
       this.SaveData();
-      this.$emit("close-modal");
+      this.$root.addCard.show=false
     },
     SaveData() {
       this.$root.UpdateRecord(

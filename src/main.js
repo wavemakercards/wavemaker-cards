@@ -31,15 +31,16 @@ new Vue({
       windowID: null,
       isElectron : process.env.IS_ELECTRON,
       dbloaded: false,
+      addCard :{
+        show : false,
+        currentnode :  null,
+      },
       fileinfo :{
         location : null,
         type : null
       },
       writer:{
         activenode :  {},
-      },
-      addcard:{
-        currentnode :  null,
       },
       interface: {
         MainNavigationToggle : false,

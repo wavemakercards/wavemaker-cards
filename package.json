@@ -1,6 +1,7 @@
 {
   "name": "wavemaker-cards",
-  "version": "0.1.7",
+  "release" : "alpha",
+  "version": "0.1.8",
   "private": true,
   "description": "Wavemaker Novel Writing Software",
   "author": "WavemakerCards",

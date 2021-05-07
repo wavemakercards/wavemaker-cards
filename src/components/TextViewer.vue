@@ -3,13 +3,13 @@
       
     <div v-for="el in folder.files" :key="el.uuid">
       <div v-if="el.type!='folder'">
-      <div class="card">
+      <v-card elevation="2" tile>
 
-    
-    <div v-if="$root.shadowDB.ManuscriptCards[el.uuid]">
-        <p>
-           <i class="material-icons">notes</i>  {{ $root.shadowDB.ManuscriptCards[el.uuid].title }}
-          <button
+<div v-if="$root.shadowDB.ManuscriptCards[el.uuid]">
+
+        <v-card-subtitle>
+         <v-icon class="pr-4">notes</v-icon> {{ $root.shadowDB.ManuscriptCards[el.uuid].title }}
+          <v-btn
         
         @click="$root.writer.activenode=el"
         absolute 
@@ -19,18 +19,18 @@
              fab
              right
       >
-       <i class="material-icons">edit</i> 
-      </button>
-        </p>
-        <p v-html="$root.shadowDB.ManuscriptCards[el.uuid].content">
+       <v-icon>edit</v-icon> 
+      </v-btn>
+        </v-card-subtitle>
+        <v-card-text v-html="$root.shadowDB.ManuscriptCards[el.uuid].content">
    
-        </p>
+        </v-card-text>
 
         </div>
         <div v-else>
- <p>
-         <i class="material-icons">notes</i> ...................
-          <button
+ <v-card-subtitle>
+         <v-icon class="pr-4">notes</v-icon> ...................
+          <v-btn
         
         @click="$root.writer.activenode=el"
         absolute 
@@ -40,15 +40,15 @@
              fab
              right
       >
-             <i class="material-icons">edit</i> 
-      </button>
-        </p>
+       <v-icon>edit</v-icon> 
+      </v-btn>
+        </v-card-subtitle>
         </div>
 
-      </div>
+      </v-card>
         </div>
         <div v-else >
-            <h4 class="pa-3">       <i class="material-icons">folder</i>  {{ el.title }}</h4>
+            <h4 class="pa-3"><v-icon  class="pr-4">folder</v-icon>  {{ el.title }}</h4>
              <div >
              <text-viewer :folder="el" />
              </div>
@@ -68,3 +68,9 @@ export default {
   },
 };
 </script>
+
+<style >
+img{
+  max-width:100%;
+}
+</style>

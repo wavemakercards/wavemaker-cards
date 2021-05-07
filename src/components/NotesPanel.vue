@@ -26,34 +26,31 @@
         </v-card>
       </transition-group>
     </draggable>
-        <AddCardWidget v-if="showModal" @close-modal="closeModal" />
   </div>
   
 </template>
 <script>
 import draggable from "vuedraggable";
 import CardEditor from "@/components/CardEditor.vue";
-import AddCardWidget from "@/components/AddCardWidget.vue";
 export default {
   components: {
     CardEditor,
     draggable,
-    AddCardWidget
+
   },
     data(){
     return{
-      selectedColumn : null,
-      showModal : false,
+      selectedColumn : null
     }
   },
   methods: {
       addNote(o) {
-      this.$root.addcard.currentnode = o;
+      this.$root.addCard.currentnode = o;
       console.log(o);
-      this.showModal =  true
+     this.$root.addCard.show=true
     },
      closeModal(){
-      this.showModal =  false
+       this.$root.addCard.show=false
       console.log("closed")
     },
     SaveChange() {

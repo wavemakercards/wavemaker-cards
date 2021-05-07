@@ -18,10 +18,11 @@ async function createWindow() {
     width: 800,
     height: 600,
     darkTheme : true,
+    resizable :true,
    // titleBarStyle : "hidden",
      //TODO : Change frame : false  to get rid of chrome on window for live
-    frame: true,
-    transparent: true,
+   // frame: true,
+    //transparent: true,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info

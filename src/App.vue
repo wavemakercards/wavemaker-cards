@@ -4,15 +4,18 @@
            <MainNavigation v-if="$root.interface.MainNavigationToggle" />
       <router-view />
     </v-main>
+    <AddCardWidget v-if="$root.addCard.show" />
   </v-app>
 </template>
 
 <script>
 import MainNavigation from "@/MainNavigation.vue";
+import AddCardWidget from "@/components/AddCardWidget.vue";
 //import TopMenu from "@/TopMenu.vue";
 export default {
   components: {
     MainNavigation,
+    AddCardWidget
   },
   methods: {
     WavemakerReset(){
@@ -43,9 +46,6 @@ export default {
   this.registration.waiting.postMessage({ type: 'SKIP_WAITING' })
 }
   },
-  mounted() {
-    window.addEventListener("keydown", this.trigger);
-  },
   destroyed() {
     window.removeEventListener("keydown", this.trigger);
   },
@@ -57,7 +57,12 @@ export default {
   },
   created() {
     document.addEventListener('swUpdated', this.updateAvailable, { once: true })
+  
   },
+  mounted(){
+        window.addEventListener("keydown", this.trigger);
+  
+  }
 };
 </script>
 <style >
