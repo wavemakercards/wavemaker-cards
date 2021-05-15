@@ -56,7 +56,7 @@
               ><v-icon>delete</v-icon></v-btn>
 </div>
 <v-card-text>
-          <CardEditor :uuid="card.uuid"  editmode="inline" :edit-on="true" :popmenu="false" />
+          <CardViewer :uuid="card.uuid"  editmode="inline" :edit-on="true" :popmenu="false" />
     </v-card-text>
 
         </v-card>
@@ -81,10 +81,10 @@
 
 <script>
 import draggable from "vuedraggable";
-import CardEditor from "@/components/CardEditor.vue";
+import CardViewer from "@/components/CardViewer.vue";
 export default {
   components:{
-    CardEditor,
+    CardViewer,
     draggable
   },
   methods: {

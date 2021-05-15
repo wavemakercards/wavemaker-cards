@@ -82,11 +82,11 @@
 </template>
 
 <script>
-import Manuscript from "@/components/Manuscript";
-import NotesPanel from "@/components/NotesPanel";
+import Manuscript from "@/tools/writer/Manuscript";
+import NotesPanel from "@/tools/writer/NotesPanel";
 
-import ManuscriptEditor from "@/components/ManuscriptEditor.vue";
-import TextViewer from "@/components/TextViewer.vue";
+import ManuscriptEditor from "@/tools/writer/ManuscriptEditor.vue";
+import TextViewer from "@/tools/writer/TextViewer.vue";
 export default {
   data() {
     return {

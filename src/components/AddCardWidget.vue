@@ -88,7 +88,7 @@
 export default {
   methods: {
     addCard() {
-      console.log(this.$root.addcard.currentnode);
+      console.log(this.$root.addCard.currentnode);
     },
     closeModal() {
   
@@ -105,19 +105,19 @@ export default {
       } else {
         obj.uuid = uuid;
       }
-      console.log("Adding to ", this.$root.addcard.currentnode);
-      if (!this.$root.addcard.currentnode.notes) {
-        this.$root.addcard.currentnode.notes = [];
+      console.log("Adding to ", this.$root.addCard.currentnode);
+      if (!this.$root.addCard.currentnode.notes) {
+        this.$root.addCard.currentnode.notes = [];
       }
-      this.$root.addcard.currentnode.notes.push(obj);
+      this.$root.addCard.currentnode.notes.push(obj);
       this.showModal1 = true;
       this.showModal2 = false;
       this.$set(
-        this.$root.addcard.currentnode,
+        this.$root.addCard.currentnode,
         "notes",
-        this.$root.addcard.currentnode.notes
+        this.$root.addCard.currentnode.notes
       );
-      this.$root.addcard.currentnode = null;
+      this.$root.addCard.currentnode = null;
       this.SaveData();
       this.$root.addCard.show=false
     },

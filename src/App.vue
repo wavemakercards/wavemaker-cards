@@ -5,17 +5,20 @@
       <router-view />
     </v-main>
     <AddCardWidget v-if="$root.addCard.show" />
+    <CardEditorTool v-if="$root.editCard.uuid"  />
   </v-app>
 </template>
 
 <script>
 import MainNavigation from "@/MainNavigation.vue";
 import AddCardWidget from "@/components/AddCardWidget.vue";
+import CardEditorTool from "@/components/CardEditorTool.vue";
 //import TopMenu from "@/TopMenu.vue";
 export default {
   components: {
     MainNavigation,
-    AddCardWidget
+    AddCardWidget,
+    CardEditorTool
   },
   methods: {
     WavemakerReset(){

@@ -42,7 +42,7 @@
                 ></v-btn
               >
               <v-card-text>
-                <CardEditor :uuid="row.uuid" editmode="inline" />
+                <CardViewer :uuid="row.uuid" editmode="inline" />
               </v-card-text>
             </v-card>
           </v-col>
@@ -58,7 +58,7 @@
                 :key="subindex"
               >
                 <v-card-text>
-                  <CardEditor :uuid="subcard.uuid" editmode="inline" />
+                  <CardViewer :uuid="subcard.uuid" editmode="inline" />
                 </v-card-text>
                 <v-card-actions>
                   <v-btn
@@ -96,10 +96,10 @@
 </template>
 
 <script>
-import CardEditor from "@/components/CardEditor.vue";
+import CardViewer from "@/components/CardViewer.vue";
 export default {
   components: {
-    CardEditor,
+    CardViewer,
   },
   methods: {
     openRow(r) {

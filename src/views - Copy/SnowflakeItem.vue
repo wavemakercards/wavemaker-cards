@@ -30,7 +30,7 @@
                 ></button
               >
               <p>
-                <CardEditor :uuid="row.uuid" editmode="inline" />
+                <CardViewer :uuid="row.uuid" editmode="inline" />
               </p>
             </div>
           </div>
@@ -42,7 +42,7 @@
                 :key="subindex"
               >
                 <p>
-                  <CardEditor :uuid="subcard.uuid" editmode="inline" />
+                  <CardViewer :uuid="subcard.uuid" editmode="inline" />
                 </p>
                 <div>
                   <button class="button is-danger"
@@ -74,11 +74,11 @@
 
 <script>
 
-import CardEditor from "@/components/CardEditor.vue";
+import CardViewer from "@/components/CardViewer.vue";
 
 export default {
   components: {
-    CardEditor,
+    CardViewer,
   },
   methods: {
     openRow(r) {

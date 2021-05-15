@@ -65,7 +65,7 @@
                       </button>
                     </div>
                     <div>
-                      <CardEditor
+                      <CardViewer
                         :uuid="card.uuid"
                         editmode="inline"
                         :edit-on="true"
@@ -92,10 +92,10 @@
 
 <script>
 import draggable from "vuedraggable";
-import CardEditor from "@/components/CardEditor.vue";
+import CardViewer from "@/components/CardViewer.vue";
 export default {
   components: {
-    CardEditor,
+    CardViewer,
     draggable,
   },
   methods: {

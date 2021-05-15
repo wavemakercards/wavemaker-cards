@@ -25,7 +25,7 @@
                         <div class="boxhandle">
                           <v-icon>drag_handle</v-icon>
                         </div>
-                        <CardEditor :uuid="card.uuid" />
+                        <CardViewer :uuid="card.uuid" />
                    
                     </v-card>
         </transition-group>
@@ -41,11 +41,11 @@
 
 <script>
 import draggable from "vuedraggable";
-import CardEditor from "@/components/CardEditor.vue";
+import CardViewer from "@/components/CardViewer.vue";
 import AddCardWidget from "@/components/AddCardWidget.vue";
 export default {
       components: {
-    CardEditor,
+    CardViewer,
     draggable,
     AddCardWidget
   },

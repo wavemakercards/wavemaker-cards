@@ -139,7 +139,7 @@
                         <div class="boxhandle">
                           <i class="mdi mdi-drag md-24"></i>
                         </div>
-                        <CardEditor :uuid="card" />
+                        <CardViewer :uuid="card" />
                       </div>
                     </div>
                   </transition-group>
@@ -165,10 +165,10 @@
 
 <script>
 import draggable from "vuedraggable";
-import CardEditor from "@/components/CardEditor.vue";
+import CardViewer from "@/components/CardViewer.vue";
 export default {
   components: {
-    CardEditor,
+    CardViewer,
     draggable,
   },
   computed: {

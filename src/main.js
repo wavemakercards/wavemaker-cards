@@ -34,6 +34,10 @@ new Vue({
       addCard :{
         show : false,
         currentnode :  null,
+        target : null
+      },
+      editCard : {
+        uuid : null
       },
       fileinfo :{
         location : null,

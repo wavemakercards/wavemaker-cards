@@ -1,7 +1,20 @@
 <template>
     <div>
-      <pre>ID : {{$root.shadowDB.Cards[uuid]}}</pre>
-      Card Editor</div>
+      <v-card-title>{{$root.shadowDB.Cards[uuid].title}}</v-card-title>
+      <v-card-text style="white-space: pre-line; max-height:200px; overflow-y : scroll" >
+        {{$root.shadowDB.Cards[uuid].content}}
+      </v-card-text>
+      <pre style="display:none;">data : {{$root.shadowDB.Cards[uuid]}}</pre>
+   <v-card-actions>
+     <v-spacer></v-spacer>
+         <v-btn @click="$root.editCard.uuid=uuid" icon>
+        <v-icon>
+          mdi-pencil
+        </v-icon>
+        </v-btn>
+   </v-card-actions>
+  
+      </div>
 </template>
 
 <script>
