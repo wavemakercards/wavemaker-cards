@@ -2,12 +2,12 @@
   <div>
       
     <div v-for="el in folder.files" :key="el.uuid">
-      <div v-if="el.type!='folder'">
-      <v-card elevation="2" tile>
+      <div v-if="el.type!='folder'" >
+      <v-card elevation="2" tile >
 
-<div v-if="$root.shadowDB.ManuscriptCards[el.uuid]">
+<div v-if="$root.shadowDB.ManuscriptCards[el.uuid]" >
 
-        <v-card-subtitle>
+        <v-card-subtitle >
          <v-icon class="pr-4">notes</v-icon> {{ $root.shadowDB.ManuscriptCards[el.uuid].title }}
           <v-btn
         
@@ -22,13 +22,13 @@
        <v-icon>edit</v-icon> 
       </v-btn>
         </v-card-subtitle>
-        <v-card-text v-html="$root.shadowDB.ManuscriptCards[el.uuid].content">
+        <v-card-text class="wm_manuscript" v-html="$root.shadowDB.ManuscriptCards[el.uuid].content">
    
         </v-card-text>
 
         </div>
         <div v-else>
- <v-card-subtitle>
+ <v-card-subtitle  >
          <v-icon class="pr-4">notes</v-icon> ...................
           <v-btn
         
@@ -73,4 +73,7 @@ export default {
 img{
   max-width:100%;
 }
+
+
+
 </style>

@@ -4,7 +4,7 @@
     <v-icon>warning</v-icon>  This card is not in the database
 </v-alert>
 <div
- v-if="$root.shadowDB.ManuscriptCards[this.uuid]" class="manuscripteditor" >
+ v-if="$root.shadowDB.ManuscriptCards[this.uuid]" class="wm_manuscripteditor" >
     <v-btn fab small absolute right  @click="showSrc=!showSrc"><v-icon>settings</v-icon></v-btn>
    <v-text-field
           label="Title"
@@ -12,6 +12,7 @@
           @keyup="SaveChange()"
         ></v-text-field>
              <tiptap-vuetify
+             class="wm_manuscript"
                  v-if="!showSrc"
       v-model="$root.shadowDB.ManuscriptCards[uuid].content"
       :extensions="extensions"
@@ -150,4 +151,6 @@ export default {
 img{
   max-width:100%;
 }
+
+
 </style>

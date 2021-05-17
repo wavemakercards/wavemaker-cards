@@ -14,16 +14,17 @@
       @change="SaveChange"
     >
       <transition-group type="transition" name="flip-list" class="" tag="div">
-        <v-card
-          class="ma-4 pa-2"
+          <CardViewer
           v-for="(card, cardIndex) in $root.writer.activenode.notes"
+          table="Writer"
           :key="cardIndex"
-        >
-          <div class="boxhandle">
-            <v-icon>drag_handle</v-icon>
-          </div>
-          <CardViewer :uuid="card.uuid" />
-        </v-card>
+          :cardIndex="cardIndex"
+          :uuid="card.uuid"
+          :drag="true"
+          :edit ="true"
+          :deleteCard="true"
+          :targetArray="$root.writer.activenode.notes"
+           />
       </transition-group>
     </draggable>
   </div>
@@ -45,12 +46,18 @@ export default {
   },
   methods: {
       addNote(o) {
-      this.$root.addCard.currentnode = o;
-      console.log(o);
+        console.log("add to :", o)
+     this.$root.addCard.target = {
+       table : "Writer",
+       // this should be the ID of the TOOL element not the Specific NODE element
+       uuid : this.$route.params.id,
+       list : o.notes
+     }
      this.$root.addCard.show=true
     },
      closeModal(){
        this.$root.addCard.show=false
+       this.$root.addCard.target = null
       console.log("closed")
     },
     SaveChange() {
@@ -59,7 +66,7 @@ export default {
         this.$route.params.id,
         this.$root.shadowDB.Writer[this.$route.params.id]
       );
-    },
+    }
   },
 };
 </script>

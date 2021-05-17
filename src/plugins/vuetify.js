@@ -1,8 +1,20 @@
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import Vue from 'vue';
-import Vuetify from 'vuetify/lib';
+import Vuetify, { VTooltip, VToolbar, VCard, VIcon, VBtn } from "vuetify/lib";
 
-Vue.use(Vuetify);
+
+Vue.use(Vuetify, {
+  iconfont: "md",
+  components: {
+    VTooltip,
+    VToolbar,
+    VCard,
+    VIcon,
+    VBtn,
+  }
+});
+
+
 
 export default new Vuetify({
   lang: {
@@ -32,7 +44,25 @@ export default new Vuetify({
         c6: "#757575",
         c7: "#616161",
         c8: "#424242",
-        c9: "#212121"
+        c9: "#212121",
+        cardcolours : [
+          "#7f0000",
+          "#560027",
+          "#12005e",
+          "#000063",
+          "#000051",
+          "#002171",
+          "#002f6c",
+          "#00363a",
+          "#00251a",
+          "#003300",
+          "#003d00",
+          "#524c00",
+          "#bc5100",
+          "#c43e00",
+          "#ac1900",
+          "#870000"
+        ]
       },
       light: {
         primary: '#1976D2',
@@ -51,7 +81,25 @@ export default new Vuetify({
         c6: "#e0e0e0",
         c7: "#eeeeee",
         c8: "#f5f5f5",
-        c9: "#fafafa"
+        c9: "#fafafa",
+        cardcolours : [
+          "#ff7961",
+          "#ff6090",
+          "#d05ce3",
+          "#9a67ea",
+          "#757de8",
+          "#5472d3",
+          "#4f83cc",
+          "#428e92",
+          "#39796b",
+          "#4c8c4a",
+          "#629749",
+          "#b4a647",
+          "#ffb04c",
+          "#ffa040",
+          "#ff833a",
+          "#f9683a"
+        ]
       }
     }
   }

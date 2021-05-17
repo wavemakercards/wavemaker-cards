@@ -28,12 +28,12 @@
       <v-container fluid > 
 
 
-        <div v-if="$root.writer.activenode.type">
+        <div v-if="$root.writer.activenode.type" class="wm_manuscripteditor">
           <div v-if="$root.writer.activenode.type === 'file'">
-            <v-row justify="center">
-              <v-col cols="10" md="10" lg="8">
+            <v-row justify="center" >
+              <v-col >
        
-                 <manuscript-editor
+                 <manuscript-editor 
                   :uuid="$root.writer.activenode.uuid"
                   :key="$root.writer.activenode.uuid"
                 />
@@ -43,7 +43,7 @@
           </div>
           <div v-else>
             <v-row justify="center">
-              <v-col sm="12" md="10" lg="8">
+              <v-col sm="12">
                 <v-text-field
                   v-model="$root.writer.activenode.title"
                   filled
@@ -123,6 +123,8 @@ export default {
   z-index: 2;
 
 }
+
+
 
 @media only screen and (min-width: 960px) {
 .sticky {

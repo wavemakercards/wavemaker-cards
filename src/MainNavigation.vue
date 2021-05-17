@@ -56,6 +56,17 @@
 
 
 
+   <v-tooltip right>
+      <template v-slot:activator="{ on, attrs }">
+       <v-list-item link  v-bind="attrs"
+          v-on="on">
+                <v-list-item-title>
+                  <a href="" target="_blank"><v-icon>star</v-icon></a></v-list-item-title>
+              </v-list-item>
+      </template>
+      <span>window</span>
+    </v-tooltip>
+
             </v-list>
           </v-menu>
            <v-toolbar-title>Wavemaker </v-toolbar-title>

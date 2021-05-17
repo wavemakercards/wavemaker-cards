@@ -302,3 +302,24 @@ float: right;
   background-color: var(--c7);
   color: var(--c1);
 }
+
+
+/*
+New stuff
+*/
+
+
+.wm_manuscripteditor{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.wm_manuscript p:first-of-type {
+  text-indent: 0px !important;
+}
+
+.wm_manuscript p {
+  text-align: left !important;;
+  text-indent: 30px !important;;
+  line-height: 2rem !important;;
+}
