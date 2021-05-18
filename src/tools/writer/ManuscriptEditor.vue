@@ -147,10 +147,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped >
 img{
   max-width:100%;
 }
+
 
 
 </style>

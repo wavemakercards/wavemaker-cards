@@ -1,5 +1,4 @@
 <template>
- <v-main>
     <v-container>
     <v-row no-gutters  justify="center">
       <h1>Your Grids</h1>
@@ -44,7 +43,6 @@
         <v-btn fab :style="{left: '50%', transform:'translateX(-50%)'}" large @click="NewItem()"> <v-icon> add </v-icon></v-btn>
     </v-row>
   </v-container>
-   </v-main>
 </template>
 
 <script>

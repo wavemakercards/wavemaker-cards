@@ -1,20 +1,21 @@
 <template>
-  <v-main>
+  <div>
     <!-- needs to make sure its loaded -->
     <div v-if="!$root.shadowDB.Gridplanner[$route.params.id]">
       loading ...
     </div>
     <div v-else>
-      <v-row no-gutters align="center" justify="center">
-        <v-col cols="12" sm="12" md="6">
+      <v-row no-gutters align="top" justify="center" style="padding-top:15px;">
+        <v-col cols="7">
           <v-text-field
             label="Title"
             v-model="$root.shadowDB.Gridplanner[$route.params.id].title"
-            solo
             @change="SaveChange()"
           ></v-text-field>
-          <v-btn @click="AddColumn"> Add Column</v-btn>
-          <v-btn @click="AddRow"> Add Row</v-btn>
+        </v-col>
+           <v-col cols="4" style="text-align:right">
+          <v-btn @click="AddColumn" fab title="Add Column" small ><v-icon small>horizontal_distribute</v-icon></v-btn>
+          <v-btn @click="AddRow" fab title="Add Row" small> <v-icon small>vertical_distribute</v-icon></v-btn>
         </v-col>
       </v-row>
       <div class="scroller">
@@ -48,9 +49,10 @@
               >
                 <v-textarea
                   auto-grow
+                  outlined
                   rows="1"
-                  flat
-                  solo
+                  placeholder="title"
+                  
                   v-model="
                     $root.shadowDB.Gridplanner[$route.params.id].content
                       .headers[headerindex]
@@ -63,7 +65,7 @@
           </draggable>
         </div>
         <!-- / the header row -->
-        <hr />
+    
         <!-- a row -->
         <draggable
           v-model="
@@ -93,9 +95,10 @@
                 <div>
                   <v-textarea
                     auto-grow
+                    outlined
                     rows="1"
-                    flat
-                    solo
+                    placeholder="title"
+                    
                     v-model="
                       $root.shadowDB.Gridplanner[$route.params.id].content
                         .rowtitle[rowindex]
@@ -129,29 +132,38 @@
                     class=""
                     tag="div"
                   >
-                    <v-card
+                    <div
                       class="ma-1"
                       v-for="(card, cardIndex) in $root.shadowDB.Gridplanner[
                         $route.params.id
                       ].content.list[rowindex][headerindex]"
                       :key="cardIndex"
+                      style="position:relative;"
                     >
-                      <v-card-text>
-                        <div class="boxhandle">
-                          <v-icon>drag_handle</v-icon>
-                        </div>
-                        <CardViewer :uuid="card" />
-                      </v-card-text>
-                    </v-card>
+                   
+                        <v-btn class="boxhandle" fab absolute top right x-small color="secondary">
+                          <v-icon>open_with</v-icon>
+                        </v-btn>
+                          <CardViewer 
+          :uuid="card"
+          :drag="false"
+          :edit ="true"
+          :deleteCard="false"
+          :editinline="true"
+           />
+                   
+                    </div>
                   </transition-group>
                 </draggable>
-
+<div style="padding-left:25px;padding-right:25px; text-align:center">
                 <v-btn
                   @click="AddCard(rowindex, headerindex)"
-                  style="width: 340px; margin-left: 5px"
-                  tile
-                  ><v-icon>add</v-icon></v-btn
-                >
+                  style="width:100%"
+                  x-small
+                  color="accent"
+                  
+                  ><v-icon>add</v-icon></v-btn>
+</div>
               </div>
             </div>
           </transition-group>
@@ -161,7 +173,7 @@
         <!-- /a row -->
       </div>
     </div>
-  </v-main>
+  </div>
 </template>
 
 <script>
@@ -267,7 +279,7 @@ export default {
 /* This provides a scrollable window around the elements */
 .scroller {
   position: absolute;
-  top: 150px;
+  top: 70px;
   left: 0px;
   right: 0px;
   bottom: 0px;
@@ -292,9 +304,10 @@ export default {
 }
 .tableBlock {
   width: 350px;
-  min-height: 20px;
+  min-height: 40px;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
+  padding:10px;
 }
 .headerRow {
   padding-left: 350px;
@@ -313,5 +326,6 @@ export default {
 .rowhandle {
   width: 350px;
   cursor: move;
+  vertical-align: middle;
 }
 </style>

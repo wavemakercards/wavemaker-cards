@@ -323,3 +323,15 @@ New stuff
   text-indent: 30px !important;;
   line-height: 2rem !important;;
 }
+
+.tiptap-vuetify-editor__toolbar{
+  position: sticky;
+  top:104px;
+  z-index: 3;
+}
+
+@media (min-width: 960px) {
+  .tiptap-vuetify-editor__toolbar{
+    top:112px;
+  }
+ }

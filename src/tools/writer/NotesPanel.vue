@@ -12,8 +12,10 @@
       handle=".boxhandle"
       group="boxes"
       @change="SaveChange"
+      v-bind="dragOptions"
+      :setData="setData"
     >
-      <transition-group type="transition" name="flip-list" class="" tag="div">
+      <transition-group type="transition" name="flip-list" class="flip-list" tag="div">
           <CardViewer
           v-for="(card, cardIndex) in $root.writer.activenode.notes"
           table="Writer"
@@ -39,12 +41,25 @@ export default {
     draggable,
 
   },
+    computed: {
+    dragOptions() {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
+    }
+    },
     data(){
     return{
       selectedColumn : null
     }
   },
   methods: {
+    setData(dataTransfer) {
+    dataTransfer.setDragImage(document.createElement('div'), 0, 0);
+},
       addNote(o) {
         console.log("add to :", o)
      this.$root.addCard.target = {
@@ -79,23 +94,22 @@ export default {
   z-index: 2;
 }
 
-.boxhandle {
-  text-align: right;
-  cursor: move;
-}
-
-.handle {
-  cursor: move;
-}
 .flip-list-move {
-  transition: all 0.5s;
+  transition: transform 0.5s;
 }
 .no-move {
-  transition: all 0s;
+  transition: transform 0s;
 }
 .ghost {
   opacity: 0.5;
-  background: #c8ebfb;
-  width: 200px;
+}
+.list-group {
+  min-height: 20px;
+}
+.list-group-item {
+  cursor: move;
+}
+.list-group-item i {
+  cursor: pointer;
 }
 </style>

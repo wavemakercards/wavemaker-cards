@@ -43,13 +43,15 @@
               cols="12"
               sm="6"
               md="4"
-              v-for="(linkcard, linkindex) in $root.shadowDB.Cards"
+              v-for="(linkcard, linkindex) in computedCardsArray"
               :key="linkindex"
             >
       <CardViewer
           :uuid="linkcard.uuid"
           :drag="false"
-          :edit ="false" />
+          :edit ="false"
+          :overrideTextshow="true"
+           />
      
                 <v-btn text @click="addUUidtolist(linkcard.uuid)">
                   <v-icon class="mr-3">link</v-icon> link this card
@@ -59,16 +61,14 @@
           </v-row>
         </v-container>
 
-        <v-card-text>
-          You can create a new card, or link to an existing one
-        </v-card-text>
+  
 
         <v-divider></v-divider>
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text @click="showModal2 = true">
-            <v-icon class="mr-3">link</v-icon> Link to a card
+          <v-btn text @click="showModal2 = false">
+            <v-icon class="mr-3">close</v-icon> Close
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -82,6 +82,17 @@ import CardViewer from "@/components/CardViewer"
 export default {
   components:{
     CardViewer
+  },
+  computed:{
+    computedCardsArray(){
+    let output = []
+    Object.keys(this.$root.shadowDB.Cards).forEach(uuid => {
+      if(this.$root.shadowDB.Cards[uuid].title!="" && this.$root.shadowDB.Cards[uuid].content!="" ){
+          output.push(this.$root.shadowDB.Cards[uuid])
+      }
+    });
+    return output
+    }
   },
   methods: {
     closeModal() {

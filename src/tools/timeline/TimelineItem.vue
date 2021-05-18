@@ -1,5 +1,5 @@
 <template>
-<v-main>
+
   <v-container>
      <!-- needs to make sure its loaded -->
   <div v-if="!$root.shadowDB.Timeline[$route.params.id]">
@@ -13,14 +13,22 @@
           v-model="$root.shadowDB.Timeline[$route.params.id].title"
           solo
           @change="SaveChange()"
+          append-outer-icon="mdi-pencil"
+ @click:append-outer="inlineEdit=!inlineEdit"
+        
         ></v-text-field>
+
+
       </v-col>
     </v-row>
 
     <section id="cd-timeline" class="cd-container">
-      <draggable v-model="$root.shadowDB.Timeline[$route.params.id].content" handle=".cd-location"  @change="SaveChange()">
+      <draggable v-model="$root.shadowDB.Timeline[$route.params.id].content" handle=".cd-location"
+       v-bind="dragOptions"
+             :setData="setData"
+        @change="SaveChange()">
         <transition-group type="transition" :name="'flip-list'">
-          <div class="cd-timeline-block" v-for="(card, index)  in $root.shadowDB.Timeline[$route.params.id].content" :key="index">
+          <div class="cd-timeline-block" v-for="(card, cardIndex)  in $root.shadowDB.Timeline[$route.params.id].content" :key="cardIndex">
             <div class="cd-timeline-img cd-location">
               <svg id="logo" version="1.1" viewBox="0 0 24 24" height="24" width="24">
           <path d="M0 0h24v24H0V0z" fill="none" />
@@ -40,27 +48,16 @@
             </div>
             <div class="cd-timeline-content">
 
-<v-card class="ma-2" max-width="100%" outlined>
-  
-<div style="padding:10px;">
-     <v-btn
-              fab
-              color="error"
-              dark
-              x-small
-                absolute
-                right
-                @click="removeMe(index)"
-                alt="delete this card"
-                title="delete this card"
-              ><v-icon>delete</v-icon></v-btn>
-</div>
-<v-card-text>
-          <CardViewer :uuid="card.uuid"  editmode="inline" :edit-on="true" :popmenu="false" />
-    </v-card-text>
-
-        </v-card>
-             
+          <CardViewer 
+           table="Timeline"
+          :cardIndex="cardIndex"
+          :uuid="card.uuid"
+          :drag="false"
+          :edit ="true"
+          :deleteCard="true"
+          :targetArray="$root.shadowDB.Timeline[$route.params.id].content"
+          :editinline="inlineEdit" />
+            
             </div>
           </div>
         </transition-group>
@@ -76,28 +73,47 @@
   </div>
 
   </v-container>
-</v-main>
+
 </template>
 
 <script>
 import draggable from "vuedraggable";
 import CardViewer from "@/components/CardViewer.vue";
 export default {
+  data(){
+    return{
+      inlineEdit : false
+    }
+  },
   components:{
     CardViewer,
     draggable
   },
+     computed: {
+    dragOptions() {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
+    }
+    },
   methods: {
-    AddTimelineNode(){    
-      this.$root.shadowDB.Timeline[this.$route.params.id].content.push({uuid : this.$root.uuid.v4()})
-      this.SaveChange()
+    AddTimelineNode(){  
+     this.$root.addCard.target = {
+       table : "Timeline",
+       // this should be the ID of the TOOL element not the Specific NODE element
+       uuid : this.$route.params.id,
+       list : this.$root.shadowDB.Timeline[this.$route.params.id].content
+     }
+     this.$root.addCard.show=true
+ 
     },
-    removeMe(index) {
-      if(confirm("you sure?")){
-      this.$root.shadowDB.Timeline[this.$route.params.id].content.splice(index, 1);
-      this.SaveChange()
-      }
-    },
+        setData(dataTransfer) {
+    dataTransfer.setDragImage(document.createElement('div'), 0, 0);
+},
+
         SaveChange() {
       this.$root.UpdateRecord(
         "Timeline",
@@ -294,6 +310,25 @@ Main components
     right: 122%;
     text-align: right;
   }
+}
+
+.flip-list-move {
+  transition: transform 0.5s;
+}
+.no-move {
+  transition: transform 0s;
+}
+.ghost {
+  opacity: 0.5;
+}
+.list-group {
+  min-height: 20px;
+}
+.list-group-item {
+  cursor: move;
+}
+.list-group-item i {
+  cursor: pointer;
 }
 </style>
 

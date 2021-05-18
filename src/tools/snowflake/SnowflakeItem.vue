@@ -1,12 +1,8 @@
 <template>
-  <v-main>
     <v-container>
       <!-- needs to make sure its loaded -->
       <div v-if="!$root.shadowDB.Snowflake[$route.params.id]">loading ...</div>
       <div v-else>
-
-
-
         <v-row no-gutters align="center" justify="center">
           <v-col cols="12" sm="12" md="6">
             <v-text-field
@@ -14,6 +10,8 @@
               v-model="$root.shadowDB.Snowflake[$route.params.id].title"
               solo
               @change="SaveChange()"
+                        append-outer-icon="mdi-pencil"
+ @click:append-outer="inlineEdit=!inlineEdit"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -26,9 +24,8 @@
             .content"
           :key="rowindex"
         >
-          <v-col cols="12" sm="6">
-            <v-card class="mb-10 mr-5" max-width="100%" outlined>
-              <v-btn
+          <v-col cols="12" sm="6" style="position:relative">
+            <v-btn
                 rounded
                 fab
                 absolute
@@ -39,17 +36,22 @@
                 @click="openRow(row)"
                 ><v-icon style="transform: rotate(90deg)"
                   >call_split</v-icon
-                ></v-btn
-              >
-              <v-card-text>
-                <CardViewer :uuid="row.uuid" editmode="inline" />
-              </v-card-text>
-            </v-card>
+                ></v-btn>
+          <CardViewer 
+           table="Snowflake"
+          :uuid="row.uuid"
+          :drag="false"
+          :edit ="true"
+          :deleteCard="false"
+          :editinline="inlineEdit"
+           />
+            
+
           </v-col>
 
           <v-fade-transition>
             <v-col cols="12" sm="6" v-if="row.isopen">
-              <v-card
+              <div
                 color="c8"
                 class="ms-5 mb-10"
                 max-width="100%"
@@ -57,10 +59,15 @@
                 v-for="(subcard, subindex) in row.children"
                 :key="subindex"
               >
-                <v-card-text>
-                  <CardViewer :uuid="subcard.uuid" editmode="inline" />
-                </v-card-text>
-                <v-card-actions>
+               
+                  <CardViewer 
+           table="Snowflake"
+          :uuid="subcard.uuid"
+          :drag="false"
+          :edit ="true"
+          :deleteCard="false"
+          :editinline="inlineEdit" />
+ 
                   <v-btn
                     fab
                     color="error"
@@ -71,8 +78,7 @@
                     @click="deleteSub(row, rowindex)"
                     ><v-icon>delete</v-icon></v-btn
                   >
-                </v-card-actions>
-              </v-card>
+              </div>
               <div class="ma-4 mb-10" align="center">
                 <v-btn
                   @click="replaceMe(row, rowindex)"
@@ -92,7 +98,6 @@
         </v-row>
       </div>
     </v-container>
-  </v-main>
 </template>
 
 <script>
@@ -100,6 +105,11 @@ import CardViewer from "@/components/CardViewer.vue";
 export default {
   components: {
     CardViewer,
+  },
+    data(){
+    return{
+      inlineEdit : true
+    }
   },
   methods: {
     openRow(r) {
