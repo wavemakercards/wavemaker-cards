@@ -11,7 +11,7 @@
               solo
               @change="SaveChange()"
                         append-outer-icon="mdi-pencil"
- @click:append-outer="inlineEdit=!inlineEdit"
+ @click:append-outer="$root.inlineEdit=!$root.inlineEdit"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -43,7 +43,7 @@
           :drag="false"
           :edit ="true"
           :deleteCard="false"
-          :editinline="inlineEdit"
+          :editinline="$root.inlineEdit"
            />
             
 
@@ -66,7 +66,7 @@
           :drag="false"
           :edit ="true"
           :deleteCard="false"
-          :editinline="inlineEdit" />
+          :editinline="$root.inlineEdit" />
  
                   <v-btn
                     fab
@@ -105,11 +105,6 @@ import CardViewer from "@/components/CardViewer.vue";
 export default {
   components: {
     CardViewer,
-  },
-    data(){
-    return{
-      inlineEdit : true
-    }
   },
   methods: {
     openRow(r) {

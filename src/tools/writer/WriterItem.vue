@@ -12,8 +12,6 @@
      <NotesPanel />
     </v-navigation-drawer>
 
-
-
         <v-app-bar dense class="sticky" color="c9"   elevation="0">
    <v-btn icon   @click="drawer = !drawer">
           <v-icon v-if="drawer">menu_open</v-icon>
@@ -58,10 +56,11 @@
         <div v-else>
                 <v-row justify="center">
               <v-col cols="10" md="10" lg="8">
-                title
+                
                <v-text-field
                   v-model="$root.shadowDB.Writer[$route.params.id].title"
                   filled
+                  label="Title"
                   type="text"
                   @change="SaveChange()"
                 ></v-text-field>
@@ -69,6 +68,7 @@
                  <v-text-field
                    v-model="$root.shadowDB.Writer[$route.params.id].author"
                   filled
+                  label="Author"
                   type="text"
                   @change="SaveChange()"
                 ></v-text-field>

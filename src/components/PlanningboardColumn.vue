@@ -16,18 +16,19 @@
                   >
 
 
-          <v-card
-                      class="ma-4 pa-2"
-                      v-for="(card, cardIndex) in mynode.notes"
-                      :key="cardIndex"
-                    >
-                  
-                        <div class="boxhandle">
-                          <v-icon>drag_handle</v-icon>
-                        </div>
-                        <CardViewer :uuid="card.uuid" />
-                   
-                    </v-card>
+                              
+    <CardViewer
+v-for="(card, cardIndex) in mynode.notes"
+          table="Writer"
+          :key="cardIndex"
+          :cardIndex="cardIndex"
+          :uuid="card.uuid"
+          :drag="true"
+          :edit ="true"
+          :deleteCard="true"
+          :targetArray="mynode.notes"
+           />
+
         </transition-group>
                 </draggable>
                    <div class="button-holder">
@@ -35,19 +36,16 @@
       <v-icon>add</v-icon>
     </v-btn>
       </div>
-    <AddCardWidget v-if="showModal" @close-modal="closeModal" />
   </div>
 </template>
 
 <script>
 import draggable from "vuedraggable";
 import CardViewer from "@/components/CardViewer.vue";
-import AddCardWidget from "@/components/AddCardWidget.vue";
 export default {
       components: {
     CardViewer,
     draggable,
-    AddCardWidget
   },
   data(){
     return{
@@ -59,10 +57,15 @@ export default {
     mynode: Object,
   },
   methods: {
-    addNote(o) {
-      this.$root.addcard.currentnode = o;
-      console.log(o);
-      this.showModal =  true
+  addNote(o) {
+        console.log("add to :", o)
+     this.$root.addCard.target = {
+       table : "Writer",
+       // this should be the ID of the TOOL element not the Specific NODE element
+       uuid : this.$route.params.id,
+       list : o.notes
+     }
+     this.$root.addCard.show=true
     },
     closeModal(){
       this.showModal =  false

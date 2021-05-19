@@ -151,7 +151,7 @@
           :edit ="true"
           :deleteCard="true"
           :targetArray="$root.shadowDB.Gridplanner[$route.params.id].content.list[rowindex][headerindex]"
-          :editinline="true"
+          :editinline="$root.inlineEdit"
            />
                    
                     </div>

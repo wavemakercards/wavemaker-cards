@@ -87,7 +87,7 @@ export default {
     computedCardsArray(){
     let output = []
     Object.keys(this.$root.shadowDB.Cards).forEach(uuid => {
-      if(this.$root.shadowDB.Cards[uuid].title!="" && this.$root.shadowDB.Cards[uuid].content!="" ){
+      if(this.$root.shadowDB.Cards[uuid].title || this.$root.shadowDB.Cards[uuid].content){
           output.push(this.$root.shadowDB.Cards[uuid])
       }
     });
@@ -109,6 +109,7 @@ export default {
         /* in this case there is a NEW CARD created */
         let card = {
           uuid: obj.uuid,
+          title: "",
           content: "",
           labels: [],
           style: {

@@ -74,6 +74,12 @@
       v-model="$root.shadowDB.Cards[$root.editCard.uuid].options.showtext"
       label="Show Notes on card"
     ></v-checkbox>
+
+               <v-checkbox
+      v-model="$root.inlineEdit"
+      label="Allow Inline editing"
+    ></v-checkbox>
+
                <div>
                  Choose a color
                </div>

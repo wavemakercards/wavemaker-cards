@@ -14,6 +14,7 @@
       @change="SaveChange"
       v-bind="dragOptions"
       :setData="setData"
+      :editinline="$root.inlineEdit"
     >
       <transition-group type="transition" name="flip-list" class="flip-list" tag="div">
           <CardViewer

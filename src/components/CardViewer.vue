@@ -14,7 +14,7 @@ Looks like a Card is expected but their aint one!
             <v-icon>drag_handle</v-icon>
    </v-card-actions>
    
-   <div v-if="editinline">
+   <div v-if="$root.inlineEdit">
          <v-card-text>
      <v-text-field
                   v-model="$root.shadowDB.Cards[uuid].title"
@@ -51,6 +51,9 @@ Looks like a Card is expected but their aint one!
         </v-icon>
         </v-btn>
    </v-card-actions>
+   <pre style="display:none">
+     {{$root.shadowDB.Cards[uuid]}}
+   </pre>
     </v-card>
 </div>
 </template>
@@ -58,19 +61,10 @@ Looks like a Card is expected but their aint one!
 <script>
 export default {
   name : "editor",
-  data(){
-    return{
-
-    }
-  },
     props:{
         uuid : String,
         table : String,
         cardIndex : Number,
-        editinline :  {
-          type : Boolean,
-          default :false
-        },
 overrideTextshow:  {
           type : Boolean,
           default :false

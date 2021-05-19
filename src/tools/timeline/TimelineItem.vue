@@ -14,7 +14,7 @@
           solo
           @change="SaveChange()"
           append-outer-icon="mdi-pencil"
- @click:append-outer="inlineEdit=!inlineEdit"
+ @click:append-outer="$root.inlineEdit=!$root.inlineEdit"
         
         ></v-text-field>
 
@@ -56,7 +56,7 @@
           :edit ="true"
           :deleteCard="true"
           :targetArray="$root.shadowDB.Timeline[$route.params.id].content"
-          :editinline="inlineEdit" />
+     />
             
             </div>
           </div>
@@ -80,11 +80,6 @@
 import draggable from "vuedraggable";
 import CardViewer from "@/components/CardViewer.vue";
 export default {
-  data(){
-    return{
-      inlineEdit : false
-    }
-  },
   components:{
     CardViewer,
     draggable

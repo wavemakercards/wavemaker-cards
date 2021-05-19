@@ -1,6 +1,6 @@
 <template>
- <v-main>
-  <div class="scroller" style="vertical-align:top">
+ <v-container>
+  <div class="scroller">
         <!-- the header row -->
         <div
           :style="{
@@ -8,11 +8,12 @@
           }"
           style="vertical-align:top"
         >
+
 <PlanningboardColumn v-for="(col,index) in NotesArray" :key="index" :mynode="col" />
 
    </div>
   </div>
-   </v-main>
+   </v-container>
 </template>
 
 <script>
@@ -27,6 +28,7 @@ export default {
     }
   },
     computed: {
+
     TableWidth() {
       return (
         (this.NotesArray.length + 1) *

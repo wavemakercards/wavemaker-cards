@@ -36,6 +36,7 @@ new Vue({
       uuid,
       shadowDB: {},
       windowID: null,
+      inlineEdit : false,
       isElectron: process.env.IS_ELECTRON,
       dbloaded: false,
       addCard: {
