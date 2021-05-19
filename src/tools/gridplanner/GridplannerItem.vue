@@ -49,7 +49,7 @@
               >
                 <v-textarea
                   auto-grow
-                  outlined
+                  solo
                   rows="1"
                   placeholder="title"
                   
@@ -95,7 +95,7 @@
                 <div>
                   <v-textarea
                     auto-grow
-                    outlined
+                    solo
                     rows="1"
                     placeholder="title"
                     
@@ -145,10 +145,12 @@
                           <v-icon>open_with</v-icon>
                         </v-btn>
                           <CardViewer 
+                                table="Gridplanner"
           :uuid="card"
           :drag="false"
           :edit ="true"
-          :deleteCard="false"
+          :deleteCard="true"
+          :targetArray="$root.shadowDB.Gridplanner[$route.params.id].content.list[rowindex][headerindex]"
           :editinline="true"
            />
                    
@@ -159,8 +161,8 @@
                 <v-btn
                   @click="AddCard(rowindex, headerindex)"
                   style="width:100%"
-                  x-small
-                  color="accent"
+              
+                  color="secondary"
                   
                   ><v-icon>add</v-icon></v-btn>
 </div>
@@ -307,10 +309,10 @@ export default {
   min-height: 40px;
   display: inline-block;
   vertical-align: top;
-  padding:10px;
 }
 .headerRow {
   padding-left: 350px;
+  border-bottom:1px solid var(--c7);
 }
 .boxhandle {
   text-align: right;
@@ -320,12 +322,18 @@ export default {
   width: 350px;
   text-align: center;
   color: #fff;
-  background-color: #424242;
+
   cursor: move;
 }
 .rowhandle {
   width: 350px;
   cursor: move;
   vertical-align: middle;
+  padding-top:20px;
+}
+
+.rowholder {
+  border-bottom:1px solid var(--c7);
+  padding-bottom:10px;
 }
 </style>
