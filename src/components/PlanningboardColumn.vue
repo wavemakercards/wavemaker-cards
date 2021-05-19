@@ -1,6 +1,5 @@
 <template>
   <div class="notecol">
-      hello
     <div class="colheader" v-if="$root.shadowDB.ManuscriptCards[mynode.uuid] && $root.shadowDB.ManuscriptCards[mynode.uuid].title">{{$root.shadowDB.ManuscriptCards[mynode.uuid].title}}</div>
     <div class="colheader" v-else><em style="opacity:50%">New Card</em></div>
  <draggable
@@ -17,8 +16,8 @@
                   >
 
 
-          <div class="card"
-                   
+          <v-card
+                      class="ma-4 pa-2"
                       v-for="(card, cardIndex) in mynode.notes"
                       :key="cardIndex"
                     >
@@ -26,15 +25,15 @@
                         <div class="boxhandle">
                           <v-icon>drag_handle</v-icon>
                         </div>
-                        <CardEditor :uuid="card.uuid" />
+                        <CardViewer :uuid="card.uuid" />
                    
-                    </div>
+                    </v-card>
         </transition-group>
                 </draggable>
                    <div class="button-holder">
-          <button class="button is-success" @click="addNote(mynode)" color="primary" x-small fab right >
+          <v-btn @click="addNote(mynode)" color="primary" x-small fab right >
       <v-icon>add</v-icon>
-    </button>
+    </v-btn>
       </div>
     <AddCardWidget v-if="showModal" @close-modal="closeModal" />
   </div>
@@ -42,11 +41,11 @@
 
 <script>
 import draggable from "vuedraggable";
-import CardEditor from "@/components/CardEditor.vue";
+import CardViewer from "@/components/CardViewer.vue";
 import AddCardWidget from "@/components/AddCardWidget.vue";
 export default {
       components: {
-    CardEditor,
+    CardViewer,
     draggable,
     AddCardWidget
   },
@@ -69,6 +68,7 @@ export default {
       this.showModal =  false
       console.log("closed")
     },
+
       BoxDrag() {
       //should work with simple save change
       this.SaveData();
@@ -109,6 +109,7 @@ export default {
   text-align: right;
   cursor: move;
 }
+
 .handle {
   cursor: move;
 }

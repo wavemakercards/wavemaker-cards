@@ -1,25 +1,27 @@
 <template>
-  <div >
-    <div  class="wm_sticky_toolbar" >
-      <button class="btn_right"  @click="addFolder" icon v-if="$root.writer.activenode.type!=='file'"><i class="material-icons">create_new_folder</i></button>
-      <button class="btn_right"  @click="addText" icon v-if="$root.writer.activenode.type!=='file'"><i class="material-icons">playlist_add</i></button>
-    </div>
-    
+  <div>
+    <v-app-bar dense class="sticky" color="c9"
+         elevation="0">
+      <v-btn class="addbtn" elevation="0" tile @click="addFolder" icon v-if="$root.writer.activenode.type!=='file'"
+        ><v-icon>create_new_folder</v-icon></v-btn
+      >
+      <v-btn class="addbtn" elevation="0" tile @click="addText" icon v-if="$root.writer.activenode.type!=='file'"><v-icon>playlist_add</v-icon></v-btn
+      >
+    </v-app-bar>
+    <v-list dense>
 
-    <div>
 
+ <v-list-item link  :class="{ accent : (!$root.writer.activenode.uuid )}"  @click="selectHome()">
+      <v-list-item-action >
+          <v-icon >home</v-icon> 
+        </v-list-item-action>
 
- <div :class="{ wm_manuscript_active : (!$root.writer.activenode.uuid )}" class="wm_manuscript_item"  @click="selectHome()">
-      <button >
-          <i class="material-icons">home</i> 
-        </button>
+        <v-list-item-content  >
+          <v-list-item-title v-if="$root.shadowDB.Writer[$route.params.id].title" >{{$root.shadowDB.Writer[$route.params.id].title }}</v-list-item-title>
+            <v-list-item-title v-else ><em style="opacity:30%">Manuscript Title</em></v-list-item-title>
+        </v-list-item-content>
 
-         <div class="wm_manuscript_item_title">
-          <div v-if="$root.shadowDB.Writer[$route.params.id].title" >{{$root.shadowDB.Writer[$route.params.id].title }}</div>
-            <div v-else ><em style="opacity:30%">Manuscript Title</em></div>
-        </div>
-
-      </div>
+      </v-list-item>
 
 
       <ManuscriptItem
@@ -27,12 +29,12 @@
           $root.shadowDB.Writer[$route.params.id]
         "
       />
-    </div>
+    </v-list>
   </div>
 </template>
 
 <script>
-import ManuscriptItem from "@/components/ManuscriptItem";
+import ManuscriptItem from "./ManuscriptItem";
 export default {
   components: {
     ManuscriptItem,
@@ -62,6 +64,7 @@ export default {
       }
       this.SaveData();
     },
+
     addText() {
       let obj = {
         type: "file",
@@ -69,6 +72,7 @@ export default {
         notes : [],
         active: false,
       };
+
       if (this.$root.writer.activenode) {
         if (this.$root.writer.activenode.type === "folder") {
           // push into the folders list
@@ -81,6 +85,7 @@ export default {
         this.SaveData();
       }
     },
+
     SaveData() {
       this.$root.UpdateRecord(
         "Writer",
@@ -93,3 +98,14 @@ export default {
   },
 };
 </script>
+<style scoped>
+.sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+}
+.addbtn {
+  width: 50%;
+  display: inline-block;
+}
+</style>

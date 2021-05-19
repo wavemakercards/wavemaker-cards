@@ -1,27 +1,5 @@
 <template>
   <div>
-
-
-<div class="modal" :class="{ 'is-active' : showModal1}">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close" @click="closeModal()"></button>
-    </header>
-    <section class="modal-card-body">
-      <!-- Content ... -->
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-      <button class="button"  @click="closeModal()">Cancel</button>
-    </footer>
-  </div>
-</div>
-
-
-<!--
-
     <v-dialog v-model="showModal1" width="500" persistent>
       <v-card>
         <v-card-actions>
@@ -65,56 +43,62 @@
               cols="12"
               sm="6"
               md="4"
-              v-for="(linkcard, linkindex) in $root.shadowDB.Cards"
+              v-for="(linkcard, linkindex) in computedCardsArray"
               :key="linkindex"
             >
-              <v-card>
-                <h3>{{ linkcard.title }}</h3>
-                <div
-                  v-html="linkcard.content"
-                  style="height: 200px; overflow-y: auto"
-                ></div>
-              </v-card>
-              <v-card-actions>
-                <v-spacer></v-spacer>
+      <CardViewer
+          :uuid="linkcard.uuid"
+          :drag="false"
+          :edit ="false"
+          :overrideTextshow="true"
+           />
+     
                 <v-btn text @click="addUUidtolist(linkcard.uuid)">
                   <v-icon class="mr-3">link</v-icon> link this card
                 </v-btn>
-              </v-card-actions>
+    
             </v-col>
           </v-row>
         </v-container>
 
-        <v-card-text>
-          You can create a new card, or link to an existing one
-        </v-card-text>
+  
 
         <v-divider></v-divider>
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text @click="showModal2 = true">
-            <v-icon class="mr-3">link</v-icon> Link to a card
+          <v-btn text @click="showModal2 = false">
+            <v-icon class="mr-3">close</v-icon> Close
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    -->
   </div>
 </template>
 
 
 <script>
+import CardViewer from "@/components/CardViewer"
 export default {
+  components:{
+    CardViewer
+  },
+  computed:{
+    computedCardsArray(){
+    let output = []
+    Object.keys(this.$root.shadowDB.Cards).forEach(uuid => {
+      if(this.$root.shadowDB.Cards[uuid].title!="" && this.$root.shadowDB.Cards[uuid].content!="" ){
+          output.push(this.$root.shadowDB.Cards[uuid])
+      }
+    });
+    return output
+    }
+  },
   methods: {
-    addCard() {
-      console.log(this.$root.addcard.currentnode);
-    },
     closeModal() {
-      console.log("close emit");
       this.showModal1 = true;
       this.showModal2 = false;
-      this.$emit("close-modal");
+      this.$root.addCard.show = false;
     },
     addUUidtolist(uuid) {
       let obj = {
@@ -122,31 +106,46 @@ export default {
       };
       if (!uuid) {
         obj.uuid = this.$root.uuid.v4();
+        /* in this case there is a NEW CARD created */
+        let card = {
+          uuid: obj.uuid,
+          content: "",
+          labels: [],
+          style: {
+            background: null,
+          },
+          options: {}
+        };
+
+        this.$set(this.$root.shadowDB.Cards, obj.uuid, card);
+        console.log(this.$root.shadowDB.Cards);
+
+        this.$root.UpdateRecord(
+          "Cards",
+          obj.uuid,
+          this.$root.shadowDB.Cards[obj.uuid]
+        );
+        console.log("saved new card");
       } else {
         obj.uuid = uuid;
+        // otherwise just pass the existing card uuid
       }
-      console.log("Adding to ", this.$root.addcard.currentnode);
-      if (!this.$root.addcard.currentnode.notes) {
-        this.$root.addcard.currentnode.notes = [];
-      }
-      this.$root.addcard.currentnode.notes.push(obj);
+      // add the ID to the target list
+      this.$root.addCard.target.list.push(obj);
+
+      // save the updated list  in the database
+      this.$root.UpdateRecord(
+        this.$root.addCard.target.table,
+        this.$root.addCard.target.uuid,
+        this.$root.shadowDB[this.$root.addCard.target.table][this.$root.addCard.target.uuid]
+      );
+
+      // reset the modals
       this.showModal1 = true;
       this.showModal2 = false;
-      this.$set(
-        this.$root.addcard.currentnode,
-        "notes",
-        this.$root.addcard.currentnode.notes
-      );
-      this.$root.addcard.currentnode = null;
-      this.SaveData();
-      this.$emit("close-modal");
-    },
-    SaveData() {
-      this.$root.UpdateRecord(
-        "Writer",
-        this.$route.params.id,
-        this.$root.shadowDB.Writer[this.$route.params.id]
-      );
+      // hide the tool
+      this.$root.addCard.show = false;
+      this.$root.addCard.target = null;
     },
   },
   data() {
@@ -161,9 +160,9 @@ export default {
 };
 </script>
 <style scoped>
-.modal{
+.modal {
   align-items: start;
   flex-direction: row;
-padding-top:5%;
+  padding-top: 5%;
 }
 </style>

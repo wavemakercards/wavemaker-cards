@@ -1,23 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// Basic sinlge pages
 import Welcome from '../views/Welcome.vue'
-import Home from '../views/Home.vue'
 import NewProject from '../views/NewProject.vue'
 import ProjectHome from '../views/ProjectHome.vue'
-import Writer from '../views/Writer.vue'
-
-import WriterItem from '../views/WriterItem.vue'
-import PlanningboardItem from '../views/PlanningboardItem.vue'
-import Snowflake from '../views/Snowflake.vue'
-import SnowflakeItem from '../views/SnowflakeItem.vue'
-import Timeline from '../views/Timeline.vue'
-import TimelineItem from '../views/TimelineItem.vue'
-import Gridplanner from '../views/Gridplanner.vue'
-import GridplannerItem from '../views/GridplannerItem.vue'
-import Mindmap from '../views/Mindmap.vue'
-import MindmapItem from '../views/MindmapItem.vue'
 import Settings from '../views/Settings.vue'
-import ExportFile from '../views/ExportFile.vue'
+// Tools 
+import Writer from '../tools/writer/Writer.vue'
+import WriterItem from '../tools/writer/WriterItem.vue'
+import PlanningboardItem from '../tools/writer/PlanningboardItem.vue'
+import Snowflake from '../tools/snowflake/Snowflake.vue'
+import SnowflakeItem from '../tools/snowflake/SnowflakeItem.vue'
+import Timeline from '../tools/timeline/Timeline.vue'
+import TimelineItem from '../tools/timeline/TimelineItem.vue'
+import Gridplanner from '../tools/gridplanner/Gridplanner.vue'
+import GridplannerItem from '../tools/gridplanner/GridplannerItem.vue'
+import Mindmap from '../tools/mindmap/Mindmap.vue'
+import MindmapItem from '../tools/mindmap/MindmapItem.vue'
+import ExportFile from '../tools/export/ExportFile.vue'
+import Database from '../tools/database/Database.vue'
+
 
 Vue.use(VueRouter)
 
@@ -26,11 +28,6 @@ const routes = [
     path: '/',
     name: 'Welcome',
     component: Welcome
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home
   },
   {
     path: '/newproject',
@@ -86,6 +83,11 @@ const routes = [
     path: '/gridplanner/:id',
     name: 'GridplannerItem',
     component: GridplannerItem
+  },
+  {
+    path: '/database',
+    name: 'Database',
+    component: Database
   },
   {
     path: '/mindmap',

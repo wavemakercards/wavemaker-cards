@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="button is-primary is-fullwidth" @click="openfile"><i class="material-icons">folder_open</i></button>
+    <v-btn class="button is-primary is-fullwidth" @click="openfile"><i class="material-icons">folder_open</i></v-btn>
     {{ filepath }}
   </div>
 </template>

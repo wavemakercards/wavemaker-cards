@@ -14,16 +14,15 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
 
- 
-
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     darkTheme : true,
-    titleBarStyle : "hidden",
+    resizable :true,
+   // titleBarStyle : "hidden",
      //TODO : Change frame : false  to get rid of chrome on window for live
-    frame: false,
-    transparent: true,
+   // frame: true,
+    //transparent: true,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info

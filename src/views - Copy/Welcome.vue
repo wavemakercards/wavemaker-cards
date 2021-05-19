@@ -29,7 +29,7 @@
               </div>
 
 
- <div class="column" v-if="Object.keys(this.$root.shadowDB.Settings).length">
+ <div class="column wm-hilight-box" v-if="Object.keys(this.$root.shadowDB.Settings).length">
 
 
 
