@@ -54,7 +54,7 @@ placeholder="labels"
 
 
 
-    <v-container style="padding-top:40px;">
+    <v-container style="padding-top:45px;">
       <v-row>
         <v-col
           cols="12"
@@ -75,7 +75,7 @@ placeholder="labels"
       </v-row>      
       
       
-      <v-btn fab color="secondary" small style="position:fixed; top:60px" @click="drawer=!drawer"><v-icon>mdi-magnify</v-icon></v-btn>
+      <v-btn fab color="secondary" small style="position:fixed; top:70px" @click="drawer=!drawer"><v-icon>mdi-magnify</v-icon></v-btn>
     </v-container>
 
 

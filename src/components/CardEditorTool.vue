@@ -8,7 +8,7 @@
       content-class="editor-dialog"
    
     >
-      <v-card    :style="$root.styleBuilder($root.editCard.uuid)">
+      <v-card :style="$root.styleBuilder($root.editCard.uuid)">
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn icon @click="closeEditor">
@@ -18,8 +18,8 @@
 
         <v-card-title
           >Edit Card &nbsp;
-          <small> ( {{ $root.editCard.uuid }} )</small></v-card-title
-        >
+        <!--  <small> ( {{ $root.editCard.uuid }} )</small> -->
+          </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
@@ -35,11 +35,14 @@
                   outlined
                   dense
                   @keydown.enter="AddLabel"
+                  @keydown.space="AddLabel"
                   v-model="newLabel"
                   prepend-icon="mdi-label"
                   append-outer-icon="mdi-plus"
                   @click:append-outer="AddLabel"
                 ></v-text-field>
+
+
                 <div style="padding-bottom: 10px">
                   <v-chip
                     color="primary"
@@ -139,7 +142,9 @@ export default {
       );
     },
     AddLabel() {
-      let newL = this.newLabel;
+       this.newLabel=this.newLabel.replace(/ /g,'');
+      let newL = this.newLabel
+    
       console.log(newL)
       if(!newL){
         alert("No text there?")
