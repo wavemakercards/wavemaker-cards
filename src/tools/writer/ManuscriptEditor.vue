@@ -124,7 +124,11 @@ export default {
     },
     methods:{
       SaveChange() {
-        console.log("Saving Change")
+        console.log("Apply manuscript forced changes ",  this.$root.shadowDB.ManuscriptCards[this.uuid].content)
+ let html =this.$root.shadowDB.ManuscriptCards[this.uuid].content
+   html = html.replaceAll("---", "&mdash;");
+   html = html.replaceAll("--", "&ndash;");
+this.$root.shadowDB.ManuscriptCards[this.uuid].content = html
       this.$root.UpdateRecord(
         "ManuscriptCards",
         this.uuid,
@@ -142,7 +146,6 @@ export default {
             obj.content=""
             this.$root.AddRecord("ManuscriptCards", obj);
         }
-        
     }
 }
 </script>
@@ -151,7 +154,4 @@ export default {
 img{
   max-width:100%;
 }
-
-
-
 </style>
