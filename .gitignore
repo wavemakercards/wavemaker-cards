@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
-/dist 
+#allowing dist folder for github pages
+#/dist 
 #should maybe allow the dist folder - or have a release foleder(maybe versioned?)
 
 # local env files
