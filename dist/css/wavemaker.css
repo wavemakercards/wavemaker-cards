@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+:root {
+
+  
+
+
+  --c0: #eceff1;
+  --c1: #cfd8dc;
+  --c2: #b0bec5;
+  --c3: #90a4ae;
+  --c4: #78909c;
+  --c5: #607d8b;
+  --c6: #546e7a;
+  --c7: #455a64;
+  --c8: #37474f;
+  --c9: #263238;
+/*
+
+  --c0: #ffffff;
+  --c1: #fafafa;
+  --c2: #f5f5f5;
+  --c3: #e0e0e0;
+  --c4: #bdbdbd;
+  --c5: #9e9e9e;
+  --c6: #424242;
+  --c7: #303030;
+  --c8: #212121;
+  --c9: #000000;
+
+
+
+  --c0: #000000;
+  --c1: #121212;
+  --c2: #5f6368;
+  --c3: #424242;
+  --c4: #9e9e9e;
+  --c5: #bdbdbd;
+  --c6: #d9d9d9;
+  --c7: #edeff0;
+  --c8: #f8f9fa;
+  --c9: #ffffff;
+*/
+  --system-font-family : "Raleway" , sans-serif;
+
+  --font-size: 1em;
+
+  --logo-top: var(--c6);
+  --logo-bottom: var(--c4);
+
+  --titlebar-bg: var(--c9);
+  --titlebar-fg: var(--c1);
+  --titlebar-border: var(--c6);
+
+  --window-bg: var(--c8);
+  --window-fg: var(--c0);
+
+  --page-bg: var(--c7);
+  --page-fg: var(--c1);
+
+  --hilight-box-fg: #fff;
+  --hilight-box-bg: purple;
+
+  --navigation-bg: var(--c7);
+  --navigation-fg: var(--c2);
+
+  --navigation-button-bg: var(--c7);
+  --navigation-button-fg: var(--c4);
+
+  --navigation-button-hover-bg :  var(--c5);
+  --navigation-button-hover-fg :var(--c8);
+
+  --interface-border: #ccc;
+
+
+
+  /* not to be changed - needed for electron*/
+  --electron-offset : 0px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+ /* transition: all 0.1s; */
+}
+
+::-webkit-scrollbar-button {
+  display: block;
+  height: 0px;
+  border-radius: 0px;
+  background-color: #000
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--c5);
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--c9);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+html {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  font-family: var(--system-font-family);
+  font-size: var(--font-size);
+  background-color: var(--window-bg);
+  height: 100%;
+  overflow: hidden;
+  color: var(--window-fg);
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  color:inherit;
+}
+
+body, button, input, select, textarea {
+  font-family: var(--system-font-family);
+}
+
+.mdi.md-18 {
+  font-size: 18px;
+}
+
+.mdi.md-24 {
+  font-size: 24px;
+}
+
+.mdi.md-36 {
+  font-size: 36px;
+}
+
+.mdi.md-48 {
+  font-size: 48px;
+}
+
+.wm_button_icon {
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: var(--c6);
+  color: var(--c3);
+  border: 0px;
+  padding: 5px 10px;
+  width:40px;
+  height:40px;
+
+}
+
+.wm_button_icon:hover,
+.wm-button-icon:focus,
+.wm-button-icon:active {
+  background-color: var(--c3);
+  color: var(--c6);
+  border:0px;
+}
+
+.wm-hilight-box {
+  color: var(--hilight-box-fg);
+  background-color: var(--hilight-box-bg);
+  padding: 10px;
+}
+
+#wm_navigation {
+  position: fixed;
+  top: var(--electron-offset);
+  left: 0px;
+  bottom: 0px;
+  width: 50px;
+  background-color: var(--navigation-bg);
+  color: var(--navigation-fg);
+}
+
+#wm_navigation>button{
+  color: var(--navigation-button-fg);
+  background-color: var(--navigation-button-bg);
+  cursor:pointer;
+  outline: none;
+  border:0px;
+  padding:10px;
+
+  width:100%;
+
+}
+
+
+#wm_navigation>button:active,
+#wm_navigation>button:focus,
+#wm_navigation>button:hover{
+  background-color: var(--navigation-button-hover-bg);
+  border:0px;
+  padding:10px;
+  color: var(--navigation-button-hover-fg);
+  cursor:pointer;
+}
+.wm_scrollwindow{
+  position: absolute;
+  top:var(--electron-offset);
+right:0px;
+  bottom:0px;
+  left:50px;
+  overflow-y :auto;
+  overflow-x: hidden;
+  padding: 20px;
+}
+.wm_sidepanel{
+  width:320px;
+  background-color: var(--c6);
+  position: absolute;
+  top:var(--electron-offset);
+  bottom:0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+  transition: all 5s;
+ }
+.wm_sidepanel_left{
+  left:50px;
+}
+.wm_sidepanel_right{
+  right:0px;
+}
+.wm_sticky_toolbar{
+  position: sticky;
+  top: 0px;
+  height:30px;
+  z-index: 2;
+  color: var(--navigation-button-fg);
+  background-color: var(--navigation-button-bg);
+}
+.wm_sticky_toolbar>button{
+  color: var(--navigation-button-fg);
+  background-color: var(--navigation-button-bg);
+  cursor:pointer;
+  outline: none;
+  border:0px;
+  height: 30px;
+}
+.wm_sticky_toolbar>button:active,
+.wm_sticky_toolbar>button:focus,
+.wm_sticky_toolbar>button:hover{
+  background-color: var(--navigation-button-hover-bg);
+  border:0px;
+  color: var(--navigation-button-hover-fg);
+  cursor:pointer;
+}
+.wm_sticky_toolbar>.btn_right{
+float: right;
+}
+#WriterHolder{
+  transition: all 0.3s;
+}
+.wm_manuscript_active{
+  color:var(--c0) !important;
+}
+
+.wm_manuscript_item {
+  cursor: pointer;
+  position: relative;
+  color:var(--c2);
+  padding-right:40px;
+  margin-bottom:10px;
+}
+.wm_manuscript_item button {
+  color:var(--c2)
+}
+.wm_manuscript_item_title {
+  position: relative;
+  left: 30px;
+  margin-left: 10px;
+  display: flex;
+}
+.wm_manuscript_item:hover,
+.wm_manuscript_item:active,
+.wm_manuscript_item:focus {
+  color:var(--c0) !important;
+}
+.wm_manuscript_item > button {
+  position: absolute;
+  left: 0px;
+  width: 30px;
+  border: 0px;
+  background: transparent;
+  display: flex;
+}
+
+.nl2br {
+  white-space: pre;
+}
+
+.card, .modal-card-head,.modal-card-body, .modal-card-foot{
+  background-color: var(--c7);
+  color: var(--c1);
+}
+
+
+/*
+New stuff
+*/
+
+
+.wm_manuscripteditor{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.wm_manuscript p:first-of-type {
+  text-indent: 0px !important;
+}
+
+.wm_manuscript p {
+  text-align: left !important;;
+  text-indent: 30px !important;;
+  line-height: 2rem !important;;
+}
+
+.tiptap-vuetify-editor__toolbar{
+  position: sticky;
+  top:104px;
+  z-index: 3;
+}
+
+@media (min-width: 960px) {
+  .tiptap-vuetify-editor__toolbar{
+    top:112px;
+  }
+ }
