@@ -3,7 +3,7 @@
     <v-row justify="center">
 
           <v-card style="margin-top:60px;">
-               <logo style="width:50px;" />
+               <logo style="width:80px; margin:0 auto; display:block; margin-top:10px;" />
             <v-card-title>
               <span class="headline">Getting Started</span>
               <v-card-text></v-card-text>
@@ -14,9 +14,6 @@
 
               <v-row>
                 <v-col cols="12">
-        
-
-
   <div class="column">
                  <v-btn
                   class="wm_button_icon"
